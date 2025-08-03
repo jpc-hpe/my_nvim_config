@@ -2,8 +2,10 @@
 
 While experimenting with neovim, I am tweaking the configuration. This repository will over time accumulate my customizations in the hope that it can help others facing my same problems.
 
-My setup: I am using [LazyVim](https://www.lazyvim.org/) as the base.
-
+My setup:
+ - I am using [LazyVim](https://www.lazyvim.org/) as the base, so the intial structure is that of the [starter](https://github.com/LazyVim/starter)
+ - The config goes under `~/.config/nvim`. But I was accustomed to my configuration being in `~/.vim` so I created a symbolic link from `~/.nvim` to `~/.config/nvim`
+ - 
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).
