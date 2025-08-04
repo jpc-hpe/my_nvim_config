@@ -13,6 +13,10 @@ The config goes under `~/.config/nvim`. But I was accustomed to my configuration
 I like to know about new plugin versions, so I have set `lazy.checker.notify = true` in `./lua/config/lazy.lua`.
 But once per day is enough, so I have set `lazy.checker.frequency = 86400`. You can always force a check by running `:Lazy update`.
 
+## Legacy vimscript config
+
+In [init.lua](init.lua) you can see (commented out) how to include [legacy vimscript](legacy.vim) configuration files. I used it initially for some key mappins that I converted since then into lua.
+
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).
