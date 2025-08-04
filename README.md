@@ -37,6 +37,14 @@ The default settings use left/right arrows to navigate the command line completi
 
 I also create shortcuts for my experimental pluging `chitshit`.
 
+### options.lua
+
+- Here is where I tell copilot to skip the files with the `passtxt` filetype that I created in autocommands.
+- paths for the python provider
+- disable unused providers
+- some personal preferences related to how I like to see things displayed
+- leader keys comfortable for me in a Spanish keyboard
+
 ## Plugins
 
 File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use. But it is much easier to modify that with the `LazyExtras` menu from inisde nvim.
