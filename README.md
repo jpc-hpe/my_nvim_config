@@ -17,6 +17,20 @@ But once per day is enough, so I have set `lazy.checker.frequency = 86400`. You 
 
 In [init.lua](init.lua) you can see (commented out) how to include [legacy vimscript](legacy.vim) configuration files. I used it initially for some key mappins that I converted since then into lua.
 
+## Other config changes
+
+Inside `lua/config` there are 3 files than you can tweak. AFAIK, it really doesn't matter in which file you put your changes, but I try to follow the suggested convention:
+
+- `autocommands.lua` for autocommands
+- `keymaps.lua` for key mappings
+- `options.lua` for changing options
+
+### autocommands.lua
+
+Call me paranoid, but I don't like my passwords to be sent to copilot. An autocommand here sets a special filetype `passtxt` for any file containing the string `pass` in its name (you can always change that manually with `:set filetype=whatever`).
+
+This is complemented later with an option to disable copilot for that filetype
+
 ## Plugins
 
 File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use. But it is much easier to modify that with the `LazyExtras` menu from inisde nvim.
