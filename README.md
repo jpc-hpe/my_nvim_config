@@ -17,6 +17,14 @@ But once per day is enough, so I have set `lazy.checker.frequency = 86400`. You 
 
 In [init.lua](init.lua) you can see (commented out) how to include [legacy vimscript](legacy.vim) configuration files. I used it initially for some key mappins that I converted since then into lua.
 
+## Plugins
+
+File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use. But it is much easier to modify that with the `LazyExtras` menu from inisde nvim.
+
+For other plugins, you create files under `lua/plugins`.
+
+TODO: expand this section
+
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).

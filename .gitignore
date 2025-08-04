@@ -1,10 +1,6 @@
 /attic/
-lazy-lock.json
-tt.*
-.tests
+/lazy-lock.json
+/.luarc.json
+/.neoconf.json
+/stylua.toml
 doc/tags
-debug
-.repro
-foo.*
-*.log
-data
