@@ -31,6 +31,12 @@ Call me paranoid, but I don't like my passwords to be sent to copilot. An autoco
 
 This is complemented later with an option to disable copilot for that filetype
 
+### keymaps.lua
+
+The default settings use left/right arrows to navigate the command line completion. This is unintuitive for me, as the possible completions are laid out vertically, so I prefer to use up/down arrows. The file includes this change.
+
+I also create shortcuts for my experimental pluging `chitshit`.
+
 ## Plugins
 
 File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use. But it is much easier to modify that with the `LazyExtras` menu from inisde nvim.
