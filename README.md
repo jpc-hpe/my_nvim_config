@@ -57,7 +57,7 @@ You may want to put files under `lua/plugins` for the following reasons:
 - To modify the default configuration of a plugin that LazyVim provides
 - To disable a plugin that LazyVim provides by default (by setting `enabled = false`)
 
-Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like `.lua.deactivated` so you can activate by simply renaming them.
+Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like `.lua.no` so you can activate by simply renaming them.
 
 ### noice (bring back the command line)
 
@@ -71,6 +71,10 @@ I am too lazy to explore and decide on color schemes, so I am using the default 
 - The ghost text that copilot+blink provides was too dark for my tast.
 
 So I created a [file](lua/plugins/tokyonight.lua) to tweak the colors.
+
+### which-key
+
+I love this plugin, with only one small "but": If the pop-up is too long, then to scroll through it you need to use some keys (that appear documented at the bottom of the pop-up) . By default these scrolling keys are CTRL+U and CTRL+D. I tried to map to up/down arrows and quickly found a problem: they did not work as expected because those keys by themselves are already used outside which-key. I ended up using Shift+Up and Shift+Down as a second best option. I created a [file](lua/plugins/which-key.lua) to do that.
 
 ## License
 

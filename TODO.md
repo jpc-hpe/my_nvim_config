@@ -7,3 +7,4 @@
 - [ ] review NEWS.md
 - [ ] disable autoformat on save. make it on demand
 - [ ] configure timer for autodisappearing messages (noice?)
+- [ ] can i use mouse wheel to scroll in which-keys?
