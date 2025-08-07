@@ -4,3 +4,4 @@
 /.neoconf.json
 /stylua.toml
 doc/tags
+.vscode/

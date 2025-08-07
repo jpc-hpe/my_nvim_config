@@ -51,6 +51,14 @@ File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use
 
 For other plugins, you create files under `lua/plugins`.
 
+You may want to put files under `lua/plugins` for the following reasons:
+
+- To add some plugin that is not contemplated by LazyVim (not even with LazyExtras)
+- To modify the default configuration of a plugin that LazyVim provides
+- To disable a plugin that LazyVim provides by default (by setting `enabled = false`)
+
+Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like `.lua.deactivated` so you can activate by simply renaming them.
+
 TODO: expand this section
 
 ## License
