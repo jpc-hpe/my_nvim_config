@@ -63,6 +63,15 @@ Files in that folder are only loaded in they end in `.lua`. You can therefore ke
 
 I am a long time user of Vim, so my "muscle memory" is used to the command line at the bottom of the screen. This managed by the noice plugin, and I created a [file](lua/plugins/noice.lua) to revert back to old behavior.
 
+### tokyonight (colors)
+
+I am too lazy to explore and decide on color schemes, so I am using the default one provided by LazyVim, which is tokyonight. But there were some things that I had to tweak:
+
+- The line between splits (that you can drag with the mouse to resize) was almos imposible to find.
+- The ghost text that copilot+blink provides was too dark for my tast.
+
+So I created a [file](lua/plugins/tokyonight.lua) to tweak the colors.
+
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).
