@@ -59,7 +59,9 @@ You may want to put files under `lua/plugins` for the following reasons:
 
 Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like `.lua.deactivated` so you can activate by simply renaming them.
 
-TODO: expand this section
+### noice (bring back the command line)
+
+I am a long time user of Vim, so my "muscle memory" is used to the command line at the bottom of the screen. This managed by the noice plugin, and I created a [file](lua/plugins/noice.lua) to revert back to old behavior.
 
 ## License
 
