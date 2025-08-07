@@ -1,10 +1,10 @@
-# My nvim config
+# My NeoVim config
 
-While experimenting with neovim, I am tweaking the configuration. This repository will over time accumulate my customizations in the hope that it can help others facing my same problems.
+While experimenting with NeoVim, I am tweaking the configuration. This repository will over time accumulate my customizations in the hope that it can help others facing my same problems.
 
 ## My setup
 
-I am using [LazyVim](https://www.lazyvim.org/) as the base, so the intial structure is that of the [starter](https://github.com/LazyVim/starter)
+I am using [LazyVim](https://www.lazyvim.org/) as the base, so the initial structure is that of the [starter](https://github.com/LazyVim/starter)
 
 The config goes under `~/.config/nvim`. But I was accustomed to my configuration being in `~/.vim` so I created a symbolic link from `~/.nvim` to `~/.config/nvim`
 
@@ -13,9 +13,9 @@ The config goes under `~/.config/nvim`. But I was accustomed to my configuration
 I like to know about new plugin versions, so I have set `lazy.checker.notify = true` in `./lua/config/lazy.lua`.
 But once per day is enough, so I have set `lazy.checker.frequency = 86400`. You can always force a check by running `:Lazy update`.
 
-## Legacy vimscript config
+## Legacy Vimscript config
 
-In [init.lua](init.lua) you can see (commented out) how to include [legacy vimscript](legacy.vim) configuration files. I used it initially for some key mappins that I converted since then into lua.
+In [init.lua](init.lua) you can see (commented out) how to include [legacy Vimscript](legacy.vim) configuration files. I used it initially for some key mappings that I converted since then into lua.
 
 ## Other config changes
 
@@ -35,7 +35,7 @@ This is complemented later with an option to disable copilot for that filetype
 
 The default settings use left/right arrows to navigate the command line completion. This is unintuitive for me, as the possible completions are laid out vertically, so I prefer to use up/down arrows. The file includes this change.
 
-I also create shortcuts for my experimental pluging `chitshit`.
+I also create shortcuts for my experimental plugin `chitshit`.
 
 ### options.lua
 
@@ -47,7 +47,7 @@ I also create shortcuts for my experimental pluging `chitshit`.
 
 ## Plugins
 
-File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use. But it is much easier to modify that with the `LazyExtras` menu from inisde nvim.
+File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use. But it is much easier to modify that with the `LazyExtras` menu from inside NeoVim.
 
 For other plugins, you create files under `lua/plugins`.
 
