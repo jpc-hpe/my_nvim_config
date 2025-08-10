@@ -97,6 +97,11 @@ I love this plugin, with only one small "but": If the pop-up is too long, then t
 
 In that file, I also added a keymap (ctrl+alt+w) to activate which-key in insert mode.
 
+### chitshit (example of locally developed plugin)
+
+This is my own plugin, and I am using it to learn about plugins, lua, ...
+The interesting part are lines 2 and 3. By commenting one or the other, you can easily switch between a local copy and the one on github. I switch to local, do some development, and once finished I `git push`, switch back to github version, refresh (`U` in `:Lazy` screen) and check that it still works.
+
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).
