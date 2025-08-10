@@ -26,3 +26,38 @@ end, { expr = true })
 vim.keymap.set("c", "<Right>", function()
   return vim.fn.wildmenumode() == 1 and " <BS><C-Z>" or "<Right>"
 end, { expr = true })
+
+-- JPC: debug keys sent in you environment
+vim.keymap.set("n", "<Leader><Leader>cx", function()
+  local mod_map = {
+    [2] = "shift",
+    [4] = "control",
+    [8] = "alt",
+    [16] = "meta",
+    [32] = "mouse double click",
+    [64] = "mouse triple click",
+    [96] = "mouse quadruple click",
+    [128] = "command/super",
+  }
+  local bitops = require("bit")
+  vim.schedule(function()
+    while true do
+      local key = vim.fn.getcharstr()
+      local mods = vim.fn.getcharmod()
+      local mod_list = {}
+      for bitval, name in pairs(mod_map) do
+        if bitops.band(mods, bitval) ~= 0 then
+          table.insert(mod_list, name)
+        end
+      end
+      local str = vim.fn.keytrans(key)
+      print(str .. (next(mod_list) and (" [" .. table.concat(mod_list, ", ") .. "]") or ""))
+      if str == "x" then
+        break
+      end
+    end
+  end)
+end, {
+  noremap = true,
+  desc = "Debug keyboard. x to exit",
+})

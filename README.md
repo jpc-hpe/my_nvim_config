@@ -37,6 +37,25 @@ The default settings use left/right arrows to navigate the command line completi
 
 I also create shortcuts for my experimental plugin `chitshit`.
 
+When adding new keymaps, or selecting keys for finetuning other plugins, you need 2 things:
+
+1. Knowing if some key is going to conflict with something else. For that you can do `:help insert-index` (or similar) to know the builtin keys, and which-key or chitshit to know additions form plugins
+2. But you also need to know how to send those keys. For example in a Spanish keyboard, the `[` is obtained by pressing `AltGr + <the key containing [>`. So a combinations like `<M-[>` is impossible because (Becasue "meta" is "alt", at least in my PC).
+
+So I have created a debug tool (triggered in normal mode with `<leader><leasder>cx`) that prints what Vim sees when you press keys. You exit it by pressing x. With this I discovered some things interesting for me (your results may be totally different):
+
+- Some keypresses didn't *reach* vim because they were captured by Windows Terminal ( I run NeoVim under WSL). But I was never going to use those Windows Terminal features and could remove them from Windows Terminal config and make them available for VIM
+- Some of the keys didn't work as expected. E.g ctrl+1 sends `1`, not `<C-1>`, ctrl+2 sends `<C-space>`, ... Fortunately, among these quirks I found that I can achieve `<C-]` by pressing ctrl+5, or `<C-\>` by pressing ctrl+`<`. Some of those would have been difficult or impossible otherwise in my keyboard
+- The numbering of function keys is strange:
+  - plain function keys generate `<F-1>` to `<F-12>`
+  - with shift they generate `<F13>` to `<F24>`
+  - with ctrl they generate `<F25>` to `<F36>`
+  - with shift and control they generate `<F37>` to `<F48>`
+  - with alt (meta) they generate `<F49>` to `<F60>`
+  - and with shift and alt they generate `<F61>` to `<F72>`
+  - .... But then with control+alt the generated key is `<M-C-F1>` to `<M-C-F12>`
+  - and with shift+control+alt it is `<M-C-S-F1>` to `<M-C-S-F12>`
+
 ### options.lua
 
 - Here is where I tell copilot to skip the files with the `passtxt` filetype that I created in autocommands.
