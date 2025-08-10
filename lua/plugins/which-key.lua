@@ -6,4 +6,15 @@ return {
       scroll_up = "<S-Down>", -- binding to scroll up inside the popup
     },
   },
+  keys = {
+    {
+      "<M-C-w>",
+      function()
+        vim.cmd("stopinsert")
+        require("which-key").show()
+      end,
+      mode = "i",
+      silent = true,
+    },
+  },
 }

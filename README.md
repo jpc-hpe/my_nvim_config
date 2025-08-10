@@ -95,6 +95,8 @@ So I created a [file](lua/plugins/tokyonight.lua) to tweak the colors.
 
 I love this plugin, with only one small "but": If the pop-up is too long, then to scroll through it you need to use some keys (that appear documented at the bottom of the pop-up) . By default these scrolling keys are CTRL+U and CTRL+D. I tried to map to up/down arrows and quickly found a problem: they did not work as expected because those keys by themselves are already used outside which-key. I ended up using Shift+Up and Shift+Down as a second best option. I created a [file](lua/plugins/which-key.lua) to do that.
 
+In that file, I also added a keymap (ctrl+alt+w) to activate which-key in insert mode.
+
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).
