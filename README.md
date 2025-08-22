@@ -87,14 +87,16 @@ menu from inside NeoVim.
 
 For other plugins, you create files under `lua/plugins`.
 
+Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like `.lua.no` so you can activate
+by simply renaming them.
+
 You may want to put files under `lua/plugins` for the following reasons:
 
 - To add some plugin that is not contemplated by LazyVim (not even with LazyExtras)
 - To modify the default configuration of a plugin that LazyVim provides
-- To disable a plugin that LazyVim provides by default (by setting `enabled = false`)
-
-Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like `.lua.no` so you can activate
-by simply renaming them.
+- To disable a plugin that LazyVim provides by default (by setting `enabled = false`). You can have one file for each plugin that you want
+  to disable, like in [this example](lua/plugins/disable_example.lua.no). Or you may disable several plugins with a single file, like
+  in [this other example](lua/plugins/disable_several_example.lua.no)
 
 One trick that I found can be seen [in this file](lua/plugins/debug_cfg_example.lua.no). Replace the plugin name at the beginning (and
 rename any other file for the same plugin) and you will get a file with the options that LazyVim is using for that plugin.

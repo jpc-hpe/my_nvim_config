@@ -1,0 +1,5 @@
+return {
+  { "CopilotC-Nvim/CopilotChat.nvim", enabled = false },
+  { "zbirenbaum/copilot.lua", enabled = false },
+  { "giuxtaposition/blink-cmp-copilot", enabled = false },
+}
