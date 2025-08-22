@@ -1,10 +1,14 @@
 # Things to explore some day
 
-- [ ] remove markdown warning about line length
+- [x] remove markdown warning about line length.
+  - With .markdownlint.json
 - [ ] lazy performance->rtp->paths to have a path with all docs even if unloaded??
 - [ ] explore lualine
 - [ ] fzf or telescope?
 - [ ] review NEWS.md
-- [ ] disable autoformat on save. make it on demand
+- [x] disable autoformat on save. make it on demand
 - [ ] configure timer for autodisappearing messages (noice?)
-- [ ] can i use mouse wheel to scroll in which-keys?
+  - none of the tricks worked so far
+- [x] can i use mouse wheel to scroll in which-keys?
+  - maybe, but then it would not work on those situations without mouse
+- [ ] review mason packages
