@@ -1,29 +1,30 @@
 # My NeoVim config
 
-While experimenting with NeoVim, I am tweaking the configuration. This repository will over time accumulate my customizations in the hope
-that it can help others facing my same problems.
+While experimenting with NeoVim, I am tweaking the configuration. This repository will over time accumulate my
+customizations in the hope that it can help others facing my same problems.
 
 ## My setup
 
 I am using [LazyVim](https://www.lazyvim.org/) as the base, so the initial structure is that of the [starter](https://github.com/LazyVim/starter)
 
-The config goes under `~/.config/nvim`. But I was accustomed to my configuration being in `~/.vim` so I created a symbolic link
-from `~/.nvim` to `~/.config/nvim`
+The config goes under `~/.config/nvim`. But I was accustomed to my configuration being in `~/.vim` so I created a
+symbolic link from `~/.nvim` to `~/.config/nvim`
 
 ## Changes in `./lua/config/lazy.lua`
 
 I like to know about new plugin versions, so I have set `lazy.checker.notify = true` in `./lua/config/lazy.lua`.
-But once per day is enough, so I have set `lazy.checker.frequency = 86400`. You can always force a check by running `:Lazy update`.
+But once per day is enough, so I have set `lazy.checker.frequency = 86400`. You can always force a check by running
+`:Lazy update`.
 
 ## Legacy Vimscript config
 
-In [init.lua](init.lua) you can see (commented out) how to include [legacy Vimscript](legacy.vim) configuration files. I used it initially
-for some key mappings that I converted since then into lua.
+In [init.lua](init.lua) you can see (commented out) how to include [legacy Vimscript](legacy.vim) configuration
+files. I used it initially for some key mappings that I converted since then into lua.
 
 ## Other config changes
 
-Inside `lua/config` there are 3 files than you can tweak. AFAIK, it really doesn't matter in which file you put your changes, but I try to
-follow the suggested convention:
+Inside `lua/config` there are 3 files than you can tweak. AFAIK, it really doesn't matter in which file you put
+your changes, but I try to follow the suggested convention:
 
 - `autocommands.lua` for autocommands
 - `keymaps.lua` for key mappings
@@ -31,8 +32,9 @@ follow the suggested convention:
 
 ### autocommands.lua
 
-Call me paranoid, but I don't like my passwords to be sent to copilot. An autocommand here sets a special filetype `passtxt` for any file
-containing the string `pass` in its name (you can always change that manually with `:set filetype=whatever`).
+Call me paranoid, but I don't like my passwords to be sent to copilot. An autocommand here sets a special filetype
+`passtxt` for any file containing the string `pass` in its name (you can always change that manually with
+`:set filetype=whatever`).
 
 This is complemented later with an option to disable copilot for that filetype
 
@@ -40,8 +42,8 @@ There is an another autocommand in the file for the blink/copilot combination ex
 
 ### keymaps.lua
 
-The default settings use left/right arrows to navigate the command line completion. This is unintuitive for me, as the possible completions
-are laid out vertically, so I prefer to use up/down arrows. The file includes this change.
+The default settings use left/right arrows to navigate the command line completion. This is unintuitive for me, as
+the possible completions are laid out vertically, so I prefer to use up/down arrows. The file includes this change.
 
 I also create shortcuts for my experimental plugin `chitshit`.
 
@@ -49,19 +51,22 @@ There is an another keymap in the file for the blink/copilot combination explain
 
 When adding new keymaps, or selecting keys for finetuning other plugins, you need 2 things:
 
-1. Knowing if some key is going to conflict with something else. For that you can do `:help insert-index` (or similar) to know the builtin
-   keys, and which-key or chitshit to know additions form plugins
-2. But you also need to know how to send those keys. For example in a Spanish keyboard, the `[` is obtained by pressing
-   `AltGr + <the key containing [>`. So a combinations like `<M-[>` is impossible because (Because "meta" is "alt", at least in my PC).
+1. Knowing if some key is going to conflict with something else. For that you can do `:help insert-index` (or
+   similar) to know the builtin keys, and which-key or chitshit to know additions form plugins
+2. But you also need to know how to send those keys. For example in a Spanish keyboard, the `[` is obtained by
+   pressing `AltGr + <the key containing [>`. So a combinations like `<M-[>` is impossible because (Because "meta"
+   is "alt", at least in my PC).
 
-So I have created a debug tool (triggered in normal mode with `<leader><leasder>cx`) that prints what Vim sees when you press keys.
+So I have created a debug tool (triggered in normal mode with `<leader><leasder>cx`) that prints what Vim sees
+when you press keys.
 You exit it by pressing x. With this I discovered some things interesting for me (your results may be totally different):
 
-- Some keypresses didn't _reach_ vim because they were captured by Windows Terminal ( I run NeoVim under WSL). But I was never going to use
-  those Windows Terminal features and could remove them from Windows Terminal config and make them available for VIM
-- Some of the keys didn't work as expected. E.g ctrl+1 sends `1`, not `<C-1>`, ctrl+2 sends `<C-space>`, ... Fortunately, among these
-  quirks I found that I can achieve `<C-]` by pressing ctrl+5, or `<C-\>` by pressing ctrl+`<`. Some of those would have been difficult or
-  impossible otherwise in my keyboard
+- Some keypresses didn't _reach_ vim because they were captured by Windows Terminal ( I run NeoVim under WSL).
+  But I was never going to use those Windows Terminal features and could remove them from Windows Terminal config
+  and make them available for VIM
+- Some of the keys didn't work as expected. E.g ctrl+1 sends `1`, not `<C-1>`, ctrl+2 sends `<C-space>`, ...
+  Fortunately, among these quirks I found that I can achieve `<C-]` by pressing ctrl+5, or `<C-\>` by pressing
+  ctrl+`<`. Some of those would have been difficult or impossible otherwise in my keyboard
 - The numbering of function keys is strange:
   - plain function keys generate `<F-1>` to `<F-12>`
   - with shift they generate `<F13>` to `<F24>`
@@ -79,38 +84,40 @@ You exit it by pressing x. With this I discovered some things interesting for me
 - disable unused providers
 - some personal preferences related to how I like to see things displayed
 - leader keys comfortable for me in a Spanish keyboard
+- disable autoformat, as i prefer to decide manually when to do that,wither with `<Leader>cf` or with `:LazyFormat`
 
 ## Plugins
 
-File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use. But it is much easier to modify that with the `LazyExtras`
-menu from inside NeoVim.
+File [lazyvim.json](lazyvim.json) defines the extra plugins that you want to use. But it is much easier to modify
+that with the `LazyExtras` menu from inside NeoVim.
 
 For other plugins, you create files under `lua/plugins`.
 
-Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like `.lua.no` so you can activate
-by simply renaming them.
+Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like
+`.lua.no` so you can activate by simply renaming them.
 
 You may want to put files under `lua/plugins` for the following reasons:
 
 - To add some plugin that is not contemplated by LazyVim (not even with LazyExtras)
 - To modify the default configuration of a plugin that LazyVim provides
-- To disable a plugin that LazyVim provides by default (by setting `enabled = false`). You can have one file for each plugin that you want
-  to disable, like in [this example](lua/plugins/disable_example.lua.no). Or you may disable several plugins with a single file, like
-  in [this other example](lua/plugins/disable_several_example.lua.no)
+- To disable a plugin that LazyVim provides by default (by setting `enabled = false`). You can have one file for
+  each plugin that you want to disable, like in [this example](lua/plugins/disable_example.lua.no). Or you may
+  disable several plugins with a single file, like in [this other example](lua/plugins/disable_several_example.lua.no)
 
-One trick that I found can be seen [in this file](lua/plugins/debug_cfg_example.lua.no). Replace the plugin name at the beginning (and
-rename any other file for the same plugin) and you will get a file with the options that LazyVim is using for that plugin.
+One trick that I found can be seen [in this file](lua/plugins/debug_cfg_example.lua.no). Replace the plugin name
+at the beginning (and rename any other file for the same plugin) and you will get a file with the options that
+LazyVim is using for that plugin.
 This can be useful to find parameters to tweak.
 
 ### noice (bring back the command line)
 
-I am a long time user of Vim, so my "muscle memory" is used to the command line at the bottom of the screen. This is managed by the noice
-plugin, and I created a [file](lua/plugins/noice.lua) to revert back to old behavior.
+I am a long time user of Vim, so my "muscle memory" is used to the command line at the bottom of the screen. This
+is managed by the noice plugin, and I created a [file](lua/plugins/noice.lua) to revert back to old behavior.
 
 ### tokyonight (colors)
 
-I am too lazy to explore and decide on color schemes, so I am using the default one provided by LazyVim, which is tokyonight. But there
-were some things that I had to tweak:
+I am too lazy to explore and decide on color schemes, so I am using the default one provided by LazyVim, which is
+tokyonight. But there were some things that I had to tweak:
 
 - The line between splits (that you can drag with the mouse to resize) was almost impossible to find.
 - The ghost text that copilot+blink provides was too dark for my taste.
@@ -119,41 +126,43 @@ So I created a [file](lua/plugins/tokyonight.lua) to tweak the colors.
 
 ### which-key
 
-I love this plugin, with only one small "but": If the pop-up is too long, then to scroll through it you need to use some keys (that appear
-documented at the bottom of the pop-up) . By default these scrolling keys are CTRL+U and CTRL+D. I tried to map to up/down arrows and
-quickly found a problem: they did not work as expected because those keys by themselves are already used outside which-key. I ended up
-using Shift+Up and Shift+Down as a second best option. I created a [file](lua/plugins/which-key.lua) to do that.
+I love this plugin, with only one small "but": If the pop-up is too long, then to scroll through it you need to use
+some keys (that appear documented at the bottom of the pop-up) . By default these scrolling keys are CTRL+U and
+CTRL+D. I tried to map to up/down arrows and quickly found a problem: they did not work as expected because those
+keys by themselves are already used outside which-key. I ended up using Shift+Up and Shift+Down as a second best
+option. I created a [file](lua/plugins/which-key.lua) to do that.
 
 In that file, I also added a keymap (ctrl+alt+w) to activate which-key in insert mode.
 
 ### chitshit (example of locally developed plugin)
 
 This is my own plugin, and I am using it to learn about plugins, lua, ...
-The interesting part are lines 2 and 3. By commenting one or the other, you can easily switch between a local copy and the one on github.
-I switch to local, do some development, and once finished I `git push`, switch back to github version, refresh (`U` in `:Lazy` screen) and
-check that it still works.
+The interesting part are lines 2 and 3. By commenting one or the other, you can easily switch between a local copy
+and the one on github. I switch to local, do some development, and once finished I `git push`, switch back to
+github version, refresh (`U` in `:Lazy` screen) and check that it still works.
 
 ### blink and copilot
 
-By default, LazyVim integrates copilot.lua into blink.cmp (by means of blink-cmp-copilot). My main problem with that is that then you
-cannot use a very good feature of copilot which is "accept one word" or "accept one line". You either accept the whole suggestion or
-nothing at all.
+By default, LazyVim integrates copilot.lua into blink.cmp (by means of blink-cmp-copilot). My main problem with
+that is that then you cannot use a very good feature of copilot which is "accept one word" or "accept one line".
+You either accept the whole suggestion or nothing at all.
 
-There is an [open issue](https://github.com/Saghen/blink.cmp/issues/1498) for this, and if/when it is fixed my workaround will not be
-required. In the meantime, and after many experiments, I am settling with the following setup:
+There is an [open issue](https://github.com/Saghen/blink.cmp/issues/1498) for this, and if/when it is fixed my
+workaround will not be required. In the meantime, and after many experiments, I am settling with the following
+setup:
 
 - Use `copilot.lua` outside of `blink.cmp`
 - Have a key that toggles between blink, copilot, or nothing.
 
 That's basically it. However, some tricks were required in the [file](lua/plugins/blink_copilot_combined.lua):
 
-- You cannot simply disable `blink-cmp-copilot`, because LazyVim adds some sources dependencies. Instead, I use and opts function that
-  removes copilot from blink sources after the fact
-- for `copilot.lua`, I redefine the `should_attach` function to look at my newly defined buffer variable. Otherwise, copilot is re-enabled
-  even after I disable it.
+- You cannot simply disable `blink-cmp-copilot`, because LazyVim adds some sources dependencies. Instead, I use an
+  opts function that removes copilot from blink sources after the fact
+- for `copilot.lua`, I redefine the `should_attach` function to look at my newly defined buffer variable.
+  Otherwise, copilot is re-enabled even after I disable it.
 
-A new key mapping (`Alt-Z`) toggles between 3 states: blink enabled (and copilot disabled), copilot enabled (and blink disabled), or both
-disabled. The key works both in normal and insert mode so you can switch while typing.
+A new key mapping (`Alt-Z`) toggles between 3 states: blink enabled (and copilot disabled), copilot enabled (and
+blink disabled), or both disabled. The key works both in normal and insert mode so you can switch while typing.
 
 And a new autocommand makes sure that you start each buffer in the status with both copilot and blink disabled.
 

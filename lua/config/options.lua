@@ -32,3 +32,5 @@ vim.o.showbreak = "\\ " -- String to put at the start of wrapped lines
 vim.o.breakindent = true -- Wrap indent to match line start
 vim.o.sidescrolloff = 3 -- Minimum number of columns to the left/right of the cursor
 vim.o.title = true -- Set the terminal title to the file name
+
+vim.g.autoformat = false -- I prefer to manually format with <Leader>cf or :LazyFormat
