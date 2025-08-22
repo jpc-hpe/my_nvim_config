@@ -1,0 +1,10 @@
+return {
+  -- "zbirenbaum/copilot.lua",
+  "saghen/blink.cmp",
+  opts = function(_, opts)
+    local file = io.open("/tmp/pluginconfig.lua", "w")
+    file:write("return " .. vim.inspect(opts))
+    file:close()
+    return opts
+  end,
+}

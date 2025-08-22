@@ -96,9 +96,13 @@ You may want to put files under `lua/plugins` for the following reasons:
 Files in that folder are only loaded in they end in `.lua`. You can therefore keep files with other names like `.lua.no` so you can activate
 by simply renaming them.
 
+One trick that I found can be seen [in this file](lua/plugins/debug_cfg_example.lua.no). Replace the plugin name at the beginning (and
+rename any other file for the same plugin) and you will get a file with the options that LazyVim is using for that plugin.
+This can be useful to find parameters to tweak.
+
 ### noice (bring back the command line)
 
-I am a long time user of Vim, so my "muscle memory" is used to the command line at the bottom of the screen. This managed by the noice
+I am a long time user of Vim, so my "muscle memory" is used to the command line at the bottom of the screen. This is managed by the noice
 plugin, and I created a [file](lua/plugins/noice.lua) to revert back to old behavior.
 
 ### tokyonight (colors)
