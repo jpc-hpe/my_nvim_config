@@ -15,6 +15,7 @@ return {
       end,
       mode = "i",
       silent = true,
+      desc = "Show which-key popup",
     },
   },
 }
