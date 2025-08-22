@@ -45,6 +45,8 @@ are laid out vertically, so I prefer to use up/down arrows. The file includes th
 
 I also create shortcuts for my experimental plugin `chitshit`.
 
+There is an another keymap in the file for the blink/copilot combination explained later
+
 When adding new keymaps, or selecting keys for finetuning other plugins, you need 2 things:
 
 1. Knowing if some key is going to conflict with something else. For that you can do `:help insert-index` (or similar) to know the builtin
@@ -124,6 +126,32 @@ This is my own plugin, and I am using it to learn about plugins, lua, ...
 The interesting part are lines 2 and 3. By commenting one or the other, you can easily switch between a local copy and the one on github.
 I switch to local, do some development, and once finished I `git push`, switch back to github version, refresh (`U` in `:Lazy` screen) and
 check that it still works.
+
+### blink and copilot
+
+By default, LazyVim integrates copilot.lua into blink.cmp (by means of blink-cmp-copilot). My main problem with that is that then you
+cannot use a very good feature of copilot which is "accept one word" or "accept one line". You either accept the whole suggestion or
+nothing at all.
+
+There is an [open issue](https://github.com/Saghen/blink.cmp/issues/1498) for this, and if/when it is fixed my workaround will not be
+required. In the meantime, and after many experiments, I am settling with the following setup:
+
+- Use `copilot.lua` outside of `blink.cmp`
+- Have a key that toggles between blink, copilot, or nothing.
+
+That's basically it. However, some tricks were required in the [file](lua/plugins/blink_copilot_combined.lua):
+
+- You cannot simply disable `blink-cmp-copilot`, because LazyVim adds some sources dependencies. Instead, I use and opts function that
+  removes copilot from blink sources after the fact
+- for `copilot.lua`, I redefine the `should_attach` function to look at my newly defined buffer variable. Otherwise, copilot is re-enabled
+  even after I disable it.
+
+A new key mapping (`Alt-Z`) toggles between 3 states: blink enabled (and copilot disabled), copilot enabled (and blink disabled), or both
+disabled. The key works both in normal and insert mode so you can switch while typing.
+
+And a new autocommand makes sure that you start each buffer in the status with both copilot and blink disabled.
+
+I kept the keymap and autocommand in the `/lua/config/*` files.
 
 ## License
 

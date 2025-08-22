@@ -61,3 +61,22 @@ end, {
   noremap = true,
   desc = "Debug keyboard. x to exit",
 })
+
+vim.keymap.set({ "i", "n" }, "<M-z>", function()
+  if not vim.b.blink_or_copilot or vim.b.blink_or_copilot >= 2 then
+    print("Disabling both blink and copilot")
+    vim.b.completion = false
+    vim.api.nvim_command("Copilot detach")
+    vim.b.blink_or_copilot = 0
+  elseif vim.b.blink_or_copilot == 0 then
+    print("Using blink")
+    vim.b.completion = true
+    vim.api.nvim_command("Copilot detach")
+    vim.b.blink_or_copilot = 1
+  elseif vim.b.blink_or_copilot == 1 then
+    print("Using copilot")
+    vim.b.completion = false
+    vim.api.nvim_command("Copilot! attach")
+    vim.b.blink_or_copilot = 2
+  end
+end, { desc = "Cycle Blink.cmp and Copilot states" })

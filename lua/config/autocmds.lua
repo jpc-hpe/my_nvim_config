@@ -17,3 +17,12 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*",
+  callback = function(args)
+    vim.b.blink_or_copilot = 0
+    vim.b.completion = false
+    vim.api.nvim_command("Copilot detach")
+  end,
+})
