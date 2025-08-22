@@ -1,4 +1,5 @@
 /attic/
+*.kk
 /lazy-lock.json
 /.luarc.json
 /.neoconf.json
