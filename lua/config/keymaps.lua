@@ -64,17 +64,18 @@ end, {
 
 vim.keymap.set({ "i", "n" }, "<M-z>", function()
   if not vim.b.blink_or_copilot or vim.b.blink_or_copilot >= 2 then
-    print("Disabling both blink and copilot")
+    -- JPC: disable messages as I will have lualine telling me the status
+    -- print("Disabling both blink and copilot")
     vim.b.completion = false
     vim.api.nvim_command("Copilot detach")
     vim.b.blink_or_copilot = 0
   elseif vim.b.blink_or_copilot == 0 then
-    print("Using blink")
+    -- print("Using blink")
     vim.b.completion = true
     vim.api.nvim_command("Copilot detach")
     vim.b.blink_or_copilot = 1
   elseif vim.b.blink_or_copilot == 1 then
-    print("Using copilot")
+    -- print("Using copilot")
     vim.b.completion = false
     vim.api.nvim_command("Copilot! attach")
     vim.b.blink_or_copilot = 2

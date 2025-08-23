@@ -168,6 +168,13 @@ And a new autocommand makes sure that you start each buffer in the status with b
 
 I kept the keymap and autocommand in the `/lua/config/*` files.
 
+### lualine
+
+I left alone the default lualine sections (bottom of the window) and added extra information in the winbar (top
+of the window), including an indicator of whether I am using blink, copilot, or none
+
+But I left commented code on how to modify the lualine sections without overriding them.
+
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).
