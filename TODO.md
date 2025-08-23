@@ -3,7 +3,7 @@
 - [x] remove markdown warning about line length.
   - With .markdownlint.json
 - [ ] lazy performance->rtp->paths to have a path with all docs even if unloaded??
-- [ ] explore lualine
+- [x] explore lualine
 - [ ] fzf or telescope?
 - [ ] review NEWS.md
 - [x] disable autoformat on save. make it on demand
