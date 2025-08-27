@@ -23,7 +23,7 @@ files. I used it initially for some key mappings that I converted since then int
 
 ## Other config changes
 
-Inside `lua/config` there are 3 files than you can tweak. AFAIK, it really doesn't matter in which file you put
+Inside `lua/config` there are 3 files than you can tweak. As far as I know, it really doesn't matter in which file you put
 your changes, but I try to follow the suggested convention:
 
 - `autocommands.lua` for autocommands
@@ -38,7 +38,7 @@ Call me paranoid, but I don't like my passwords to be sent to copilot. An autoco
 
 This is complemented later with an option to disable copilot for that filetype
 
-There is an another autocommand in the file for the blink/copilot combination explained later
+There is another autocommand in the file for the blink/copilot combination explained later
 
 ### keymaps.lua
 
@@ -47,9 +47,9 @@ the possible completions are laid out vertically, so I prefer to use up/down arr
 
 I also create shortcuts for my experimental plugin `chitshit`.
 
-There is an another keymap in the file for the blink/copilot combination explained later
+There is another keymap in the file for the blink/copilot combination explained later
 
-When adding new keymaps, or selecting keys for finetuning other plugins, you need 2 things:
+When adding new keymaps, or selecting keys for fine-tuning other plugins, you need 2 things:
 
 1. Knowing if some key is going to conflict with something else. For that you can do `:help insert-index` (or
    similar) to know the builtin keys, and which-key or chitshit to know additions form plugins
@@ -59,7 +59,7 @@ When adding new keymaps, or selecting keys for finetuning other plugins, you nee
 
 So I have created a debug tool (triggered in normal mode with `<leader><leasder>cx`) that prints what Vim sees
 when you press keys.
-You exit it by pressing x. With this I discovered some things interesting for me (your results may be totally different):
+You exit it by pressing `x`. With this I discovered some things interesting for me (your results may be totally different):
 
 - Some keypresses didn't _reach_ vim because they were captured by Windows Terminal ( I run NeoVim under WSL).
   But I was never going to use those Windows Terminal features and could remove them from Windows Terminal config
@@ -74,7 +74,7 @@ You exit it by pressing x. With this I discovered some things interesting for me
   - with shift and control they generate `<F37>` to `<F48>`
   - with alt (meta) they generate `<F49>` to `<F60>`
   - and with shift and alt they generate `<F61>` to `<F72>`
-  - .... But then with control+alt the generated key is `<M-C-F1>` to `<M-C-F12>`
+  - ... but then with control+alt the generated key is `<M-C-F1>` to `<M-C-F12>`
   - and with shift+control+alt it is `<M-C-S-F1>` to `<M-C-S-F12>`
 
 ### options.lua
@@ -84,7 +84,7 @@ You exit it by pressing x. With this I discovered some things interesting for me
 - disable unused providers
 - some personal preferences related to how I like to see things displayed
 - leader keys comfortable for me in a Spanish keyboard
-- disable autoformat, as i prefer to decide manually when to do that,wither with `<Leader>cf` or with `:LazyFormat`
+- disable autoformat, as I prefer to decide manually when to do that, either with `<Leader>cf` or with `:LazyFormat`
 
 ## Plugins
 
@@ -138,13 +138,13 @@ In that file, I also added a keymap (ctrl+alt+w) to activate which-key in insert
 
 This is my own plugin, and I am using it to learn about plugins, lua, ...
 The interesting part are lines 2 and 3. By commenting one or the other, you can easily switch between a local copy
-and the one on github. I switch to local, do some development, and once finished I `git push`, switch back to
-github version, refresh (`U` in `:Lazy` screen) and check that it still works.
+and the one on GitHub. I switch to local, do some development, and once finished I `git push`, switch back to
+GitHub version, refresh (`U` in `:Lazy` screen) and check that it still works.
 
 ### blink and copilot
 
 By default, LazyVim integrates copilot.lua into blink.cmp (by means of blink-cmp-copilot). My main problem with
-that is that then you cannot use a very good feature of copilot which is "accept one word" or "accept one line".
+that is that then you cannot use an excellent feature of copilot which is "accept one word" or "accept one line".
 You either accept the whole suggestion or nothing at all.
 
 There is an [open issue](https://github.com/Saghen/blink.cmp/issues/1498) for this, and if/when it is fixed my
@@ -174,6 +174,16 @@ I left alone the default lualine sections (bottom of the window) and added extra
 of the window), including an indicator of whether I am using blink, copilot, or none
 
 But I left commented code on how to modify the lualine sections without overriding them.
+
+## Misc infos
+
+No change in the environment, just some infos I gathered:
+
+- zen mode (`<leader>uz`) for less distractions
+- Zoom mode (`<leader>uZ`) is similar. One comes from folke, the other from snacks
+- `<leader>x` for diagnostics and similar
+- `<leader>uf` (global) or `<leader>uF` (buffer) to toggle autoformat
+- `<leader>s` for searches
 
 ## License
 
