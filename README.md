@@ -175,6 +175,10 @@ of the window), including an indicator of whether I am using blink, copilot, or 
 
 But I left commented code on how to modify the lualine sections without overriding them.
 
+### markdownlint-cli2
+
+This tool can only be configured either by a file in the current directory or by explicitly passing a configuration file. To complicate things further, it turns out that this is called twice (once by `none-ls`, another by `nvim-lint`). I added 2 plugin files to reconfigure them so in both cases the configuration in `.markdownlint-cli2.yaml` in nvim config folder is used.
+
 ## Misc infos
 
 No change in the environment, just some infos I gathered:

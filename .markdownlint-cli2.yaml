@@ -1,0 +1,2 @@
+config:
+  MD013: false # or { line_length: 115}
