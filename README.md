@@ -187,6 +187,10 @@ I find that the virtual text about diagnostics (specially now that I am experime
 
 I then explore the diagnostics with `:Trouble diagnostics` (leader-xx) or `:FzfLua diagnosics_document` (leader-sd)
 
+### conform debugging
+
+I reconfigured conform debug level, at least while experiment with LSPs and formatters
+
 ## Misc infos
 
 No change in the environment, just some infos I gathered:
