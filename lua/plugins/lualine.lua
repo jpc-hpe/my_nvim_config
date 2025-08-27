@@ -1,5 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
+  optional = true,
   --[[ JPC: this is when you want to insert and not override
   opts = function(_, opts)
     table.insert(opts.sections.lualine_z, {

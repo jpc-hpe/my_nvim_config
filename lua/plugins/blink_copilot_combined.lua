@@ -1,6 +1,7 @@
 return {
   {
     "saghen/blink.cmp",
+    optional = true,
     opts = function(_, opts)
       -- Keymap override. These are my current preferences
       opts.keymap = opts.keymap or {}
@@ -26,6 +27,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
+    optional = true,
     opts = {
       suggestion = {
         enabled = true,

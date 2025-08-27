@@ -34,3 +34,5 @@ vim.o.sidescrolloff = 3 -- Minimum number of columns to the left/right of the cu
 vim.o.title = true -- Set the terminal title to the file name
 
 vim.g.autoformat = false -- I prefer to manually format with <Leader>cf or :LazyFormat
+-- vim.g.snacks_animate = false ??
+vim.g.deprecation_warnings= true

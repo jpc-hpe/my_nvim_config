@@ -1,5 +1,6 @@
 return {
   "folke/which-key.nvim",
+  optional = true,
   opts = {
     keys = {
       scroll_down = "<S-Up>", -- binding to scroll down inside the popup

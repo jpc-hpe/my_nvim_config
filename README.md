@@ -109,6 +109,8 @@ at the beginning (and rename any other file for the same plugin) and you will ge
 LazyVim is using for that plugin.
 This can be useful to find parameters to tweak.
 
+Whenever I add a file to reconfigure a provided plugin, I add `optional = true` so the file is not forcing the plugin if it later disappears from my setup.
+
 ### noice (bring back the command line)
 
 I am a long time user of Vim, so my "muscle memory" is used to the command line at the bottom of the screen. This
