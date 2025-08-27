@@ -181,6 +181,12 @@ But I left commented code on how to modify the lualine sections without overridi
 
 This tool can only be configured either by a file in the current directory or by explicitly passing a configuration file. To complicate things further, it turns out that this is called twice (once by `none-ls`, another by `nvim-lint`). I added 2 plugin files to reconfigure them so in both cases the configuration in `.markdownlint-cli2.yaml` in nvim config folder is used.
 
+### diagnostics virtual text
+
+I find that the virtual text about diagnostics (specially now that I am experiment with many of mason plugins) clutters the screen too much. This could be reconfigured in `options.lua` but I opted for reconfiguring nvim-lspconfig.
+
+I then explore the diagnostics with `:Trouble diagnostics` (leader-xx) or `:FzfLua diagnosics_document` (leader-sd)
+
 ## Misc infos
 
 No change in the environment, just some infos I gathered:
