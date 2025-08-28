@@ -77,6 +77,8 @@ You exit it by pressing `x`. With this I discovered some things interesting for 
   - ... but then with control+alt the generated key is `<M-C-F1>` to `<M-C-F12>`
   - and with shift+control+alt it is `<M-C-S-F1>` to `<M-C-S-F12>`
 
+The file also contains keymaps for my tweak in todo-comments. See [section below](#todo-comments)
+
 ### options.lua
 
 - Here is where I tell copilot to skip the files with the `passtxt` filetype that I created in autocommands.
@@ -190,6 +192,10 @@ I then explore the diagnostics with `:Trouble diagnostics` (leader-xx) or `:FzfL
 ### conform debugging
 
 I reconfigured conform debug level, at least while experiment with LSPs and formatters
+
+### todo-comments
+
+This plugin works by default in the current working directory. While some of the commands accept a `cwd` option, not all of them do. I initially created a fork of the plugin, but finally decided to have keymaps that temporarily switch the cwd , execute the command, and then switch back. I am unsure if this can create race conditions for other plugins, so use it at your own risk.
 
 ## Misc infos
 

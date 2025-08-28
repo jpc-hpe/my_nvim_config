@@ -81,3 +81,29 @@ vim.keymap.set({ "i", "n" }, "<M-z>", function()
     vim.b.blink_or_copilot = 2
   end
 end, { desc = "Cycle Blink.cmp and Copilot states" })
+
+local function command_in_file_cwd(cmd)
+  local previous_cwd = vim.fn.getcwd()
+  local target_cwd = vim.fn.expand("%:p:h")
+  -- print("JPC prev is " .. previous_cwd .. " target is " .. target_cwd)
+  if target_cwd ~= "" and target_cwd ~= previous_cwd then
+    vim.cmd("cd " .. vim.fn.fnameescape(target_cwd))
+    vim.cmd(cmd)
+    vim.cmd("cd " .. vim.fn.fnameescape(previous_cwd))
+  else
+    vim.cmd(cmd)
+  end
+end
+
+vim.keymap.set("n", "<leader><leader>tq", function()
+  command_in_file_cwd("TodoQuickFix")
+end, { desc = "Quickfix TODOs in current file" })
+vim.keymap.set("n", "<leader><leader>tl", function()
+  command_in_file_cwd("TodoLocList")
+end, { desc = "LocList TODOs in current file" })
+vim.keymap.set("n", "<leader><leader>tt", function()
+  command_in_file_cwd("Trouble todo")
+end, { desc = "Trouble TODOs in current file" })
+vim.keymap.set("n", "<leader><leader>tf", function()
+  command_in_file_cwd("TodoFzfLua")
+end, { desc = "Fzf TODOs in current file" })
