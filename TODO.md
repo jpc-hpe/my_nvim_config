@@ -1,14 +1,17 @@
 # Things to explore some day
 
-- [x] remove markdown warning about line length.
-  - With .markdownlint.json
 - [ ] lazy performance->rtp->paths to have a path with all docs even if unloaded??
-- [x] explore lualine
-- [ ] fzf or telescope?
-- [ ] review NEWS.md
-- [x] disable autoformat on save. make it on demand
-- [ ] configure timer for autodisappearing messages (noice?)
-  - none of the tricks worked so far
-- [x] can i use mouse wheel to scroll in which-keys?
-  - maybe, but then it would not work on those situations without mouse
-- [ ] review mason packages
+- [ ] refine ghost colors
+- [ ] codecompanion
+- [ ] investigate LazyVim/lua/lazyvim/plugins/extras/lsp/none-ls.lua and none-ls to add my own
+- [ ] explore nvim-lint//conform//none-ls//mason//prettier//...interactions
+- [ ] conceal??
+- [ ] explore toggles in leader-u
+- [ ] refine copilot
+- [ ] fzf-lua deepdive
+- [ ] kulala deepdive
+- [ ] mini.ai deepdive
+- [ ] investigate neoconf
+- [ ] review neotest adapters
+- [ ] review nvim-tree-sitter commands
+- [ ] complete yanky description

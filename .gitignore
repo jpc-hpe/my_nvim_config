@@ -6,3 +6,4 @@ attic/
 /stylua.toml
 doc/tags
 .vscode/
+.harper-dictionary.txt

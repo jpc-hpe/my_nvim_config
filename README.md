@@ -3,6 +3,37 @@
 While experimenting with NeoVim, I am tweaking the configuration. This repository will over time accumulate my
 customizations in the hope that it can help others facing my same problems.
 
+<!--toc:start-->
+- [My NeoVim config](#my-neovim-config)
+  - [My setup](#my-setup)
+  - [Changes in `./lua/config/lazy.lua`](#changes-in-luaconfiglazylua)
+  - [Legacy Vimscript config](#legacy-vimscript-config)
+  - [Other config changes](#other-config-changes)
+    - [autocommands.lua](#autocommandslua)
+    - [keymaps.lua](#keymapslua)
+    - [options.lua](#optionslua)
+  - [Plugins](#plugins)
+    - [noice (bring back the command line)](#noice-bring-back-the-command-line)
+    - [tokyonight (colors)](#tokyonight-colors)
+    - [which-key](#which-key)
+    - [chitshit (example of locally developed plugin)](#chitshit-example-of-locally-developed-plugin)
+    - [blink and copilot](#blink-and-copilot)
+    - [lualine](#lualine)
+    - [markdownlint-cli2](#markdownlint-cli2)
+    - [diagnostics virtual text](#diagnostics-virtual-text)
+    - [conform debugging](#conform-debugging)
+    - [todo-comments](#todo-comments)
+    - [luaconsole and neorepl](#luaconsole-and-neorepl)
+    - [codecompannion](#codecompannion)
+    - [mini-hipatterns](#mini-hipatterns)
+    - [snacks](#snacks)
+  - [Miscellaneous information](#miscellaneous-information)
+    - [Distraction free modes](#distraction-free-modes)
+    - [Useful keys to remember](#useful-keys-to-remember)
+    - [Local configs](#local-configs)
+    - [Brief description of plugins](#brief-description-of-plugins)
+  - [License](#license)
+<!--toc:end-->
 ## My setup
 
 I am using [LazyVim](https://www.lazyvim.org/) as the base, so the initial structure is that of the [starter](https://github.com/LazyVim/starter)
@@ -19,7 +50,7 @@ But once per day is enough, so I have set `lazy.checker.frequency = 86400`. You 
 ## Legacy Vimscript config
 
 In [init.lua](init.lua) you can see (commented out) how to include [legacy Vimscript](legacy.vim) configuration
-files. I used it initially for some key mappings that I converted since then into lua.
+files. I used it initially for some key mappings that I have converted since then into lua.
 
 ## Other config changes
 
@@ -38,7 +69,9 @@ Call me paranoid, but I don't like my passwords to be sent to copilot. An autoco
 
 This is complemented later with an option to disable copilot for that filetype
 
-There is another autocommand in the file for the blink/copilot combination explained later
+Note: with the blink/copilot cycle trick, copilot starts disabled anyway for any file, including password files. But I am keeping this anyway
+
+There is another autocommand in the file for the blink/copilot combination explained [later](#blink-and-copilot)
 
 ### keymaps.lua
 
@@ -47,17 +80,17 @@ the possible completions are laid out vertically, so I prefer to use up/down arr
 
 I also create shortcuts for my experimental plugin `chitshit`.
 
-There is another keymap in the file for the blink/copilot combination explained later
+There is another keymap in the file for the blink/copilot combination explained [later](#blink-and-copilot)
 
 When adding new keymaps, or selecting keys for fine-tuning other plugins, you need 2 things:
 
 1. Knowing if some key is going to conflict with something else. For that you can do `:help insert-index` (or
-   similar) to know the builtin keys, and which-key or chitshit to know additions form plugins
+   similar) to know the builtin keys, and which-key, `FzfLua keymaps` or chitshit to know additions from plugins
 2. But you also need to know how to send those keys. For example in a Spanish keyboard, the `[` is obtained by
-   pressing `AltGr + <the key containing [>`. So a combinations like `<M-[>` is impossible because (Because "meta"
+   pressing `AltGr + <the key containing [>`. So a combination like `<M-[>` is impossible because (Because "meta"
    is "alt", at least in my PC).
 
-So I have created a debug tool (triggered in normal mode with `<leader><leasder>cx`) that prints what Vim sees
+So I have created a debug tool (triggered in normal mode with `<leader><leader>cx`) that prints what Vim sees
 when you press keys.
 You exit it by pressing `x`. With this I discovered some things interesting for me (your results may be totally different):
 
@@ -68,25 +101,25 @@ You exit it by pressing `x`. With this I discovered some things interesting for 
   Fortunately, among these quirks I found that I can achieve `<C-]` by pressing ctrl+5, or `<C-\>` by pressing
   ctrl+`<`. Some of those would have been difficult or impossible otherwise in my keyboard
 - The numbering of function keys is strange:
-  - plain function keys generate `<F-1>` to `<F-12>`
-  - with shift they generate `<F13>` to `<F24>`
-  - with ctrl they generate `<F25>` to `<F36>`
-  - with shift and control they generate `<F37>` to `<F48>`
-  - with alt (meta) they generate `<F49>` to `<F60>`
-  - and with shift and alt they generate `<F61>` to `<F72>`
-  - ... but then with control+alt the generated key is `<M-C-F1>` to `<M-C-F12>`
-  - and with shift+control+alt it is `<M-C-S-F1>` to `<M-C-S-F12>`
+  - Plain function keys generate `<F-1>` to `<F-12>`
+  - With shift they generate `<F13>` to `<F24>`
+  - With ctrl they generate `<F25>` to `<F36>`
+  - With shift and control they generate `<F37>` to `<F48>`
+  - With alt (meta) they generate `<F49>` to `<F60>`
+  - And with shift and alt they generate `<F61>` to `<F72>`
+  - ... But then with control+alt the generated key is `<M-C-F1>` to `<M-C-F12>`
+  - And with shift+control+alt it is `<M-C-S-F1>` to `<M-C-S-F12>`
 
-The file also contains keymaps for my tweak in todo-comments. See [section below](#todo-comments)
+The file also contains keymaps for my tweak in `todo-comments`. See [section below](#todo-comments)
 
 ### options.lua
 
 - Here is where I tell copilot to skip the files with the `passtxt` filetype that I created in autocommands.
-- paths for the python provider
-- disable unused providers
-- some personal preferences related to how I like to see things displayed
-- leader keys comfortable for me in a Spanish keyboard
-- disable autoformat, as I prefer to decide manually when to do that, either with `<Leader>cf` or with `:LazyFormat`
+- Paths for the python provider
+- Disable unused providers
+- Some personal preferences related to how I like to see things displayed
+- Leader keys comfortable for me in a Spanish keyboard
+- Disable autoformat, as I prefer to decide manually when to do that, either with `<Leader>cf` or with `:LazyFormat`
 
 ## Plugins
 
@@ -116,7 +149,7 @@ Whenever I add a file to reconfigure a provided plugin, I add `optional = true` 
 ### noice (bring back the command line)
 
 I am a long time user of Vim, so my "muscle memory" is used to the command line at the bottom of the screen. This
-is managed by the noice plugin, and I created a [file](lua/plugins/noice.lua) to revert back to old behavior.
+is managed by the `noice` plugin, and I created a [file](lua/plugins/noice.lua) to revert back to old behavior.
 
 ### tokyonight (colors)
 
@@ -131,8 +164,8 @@ So I created a [file](lua/plugins/tokyonight.lua) to tweak the colors.
 ### which-key
 
 I love this plugin, with only one small "but": If the pop-up is too long, then to scroll through it you need to use
-some keys (that appear documented at the bottom of the pop-up) . By default these scrolling keys are CTRL+U and
-CTRL+D. I tried to map to up/down arrows and quickly found a problem: they did not work as expected because those
+some keys (that appear documented at the bottom of the pop-up) . By default these scrolling keys are ctrl-u and
+ctrl-d. I tried to map to up/down arrows and quickly found a problem: they did not work as expected because those
 keys by themselves are already used outside which-key. I ended up using Shift+Up and Shift+Down as a second best
 option. I created a [file](lua/plugins/which-key.lua) to do that.
 
@@ -162,7 +195,7 @@ That's basically it. However, some tricks were required in the [file](lua/plugin
 
 - You cannot simply disable `blink-cmp-copilot`, because LazyVim adds some sources dependencies. Instead, I use an
   opts function that removes copilot from blink sources after the fact
-- for `copilot.lua`, I redefine the `should_attach` function to look at my newly defined buffer variable.
+- For `copilot.lua`, I redefine the `should_attach` function to look at my newly defined buffer variable.
   Otherwise, copilot is re-enabled even after I disable it.
 
 A new key mapping (`Alt-Z`) toggles between 3 states: blink enabled (and copilot disabled), copilot enabled (and
@@ -181,11 +214,11 @@ But I left commented code on how to modify the lualine sections without overridi
 
 ### markdownlint-cli2
 
-This tool can only be configured either by a file in the current directory or by explicitly passing a configuration file. To complicate things further, it turns out that this is called twice (once by `none-ls`, another by `nvim-lint`). I added 2 plugin files to reconfigure them so in both cases the configuration in `.markdownlint-cli2.yaml` in nvim config folder is used.
+This tool can only be configured either by a file in the current directory or by explicitly passing a configuration file. To complicate things further, it turns out that this is called twice (once by `none-ls`, another by `nvim-lint`). I added 2 plugin files to reconfigure them so in both cases it uses the configuration in `.markdownlint-cli2.yaml` in nvim config folder.
 
 ### diagnostics virtual text
 
-I find that the virtual text about diagnostics (specially now that I am experiment with many of mason plugins) clutters the screen too much. This could be reconfigured in `options.lua` but I opted for reconfiguring nvim-lspconfig.
+I find that the virtual text about diagnostics (specially now that I am experimenting with many of mason plugins) clutters the screen too much. This could be reconfigured in `options.lua` but I opted for reconfiguring nvim-lspconfig.
 
 I then explore the diagnostics with `:Trouble diagnostics` (leader-xx) or `:FzfLua diagnosics_document` (leader-sd)
 
@@ -195,7 +228,7 @@ I reconfigured conform debug level, at least while experiment with LSPs and form
 
 ### todo-comments
 
-This plugin works by default in the current working directory. While some of the commands accept a `cwd` option, not all of them do. I initially created a fork of the plugin, but finally decided to have keymaps that temporarily switch the cwd , execute the command, and then switch back. I am unsure if this can create race conditions for other plugins, so use it at your own risk.
+This plugin works by default in the current working directory. While some of the commands accept a `cwd` option, not all of them do. I initially created a fork of the plugin, but finally decided to have keymaps that temporarily switch the cwd, execute the command, and then switch back. I am unsure if this can create race conditions for other plugins, so use it at your own risk.
 
 ### luaconsole and neorepl
 
@@ -213,9 +246,9 @@ This plugin highlights strings such as TODO, FIXME, ... I added some patterns th
 
 This plugins is responsible for multiple things. So far, I have only reconfigured the time that the disappearing messages remain on screen, as the default value was too small for my taste
 
-## Misc infos
+## Miscellaneous information
 
-No change in the environment, just some infos I gathered:
+No change in the environment, just some info I gathered:
 
 ### Distraction free modes
 
@@ -223,14 +256,203 @@ No change in the environment, just some infos I gathered:
 - Zoom mode (`<leader>uZ`) is similar. One comes from folke, the other from snacks
 
 ### Useful keys to remember
-- `<leader>x` for diagnostics and similar
+
 - `<leader>uf` (global) or `<leader>uF` (buffer) to toggle autoformat
 - `<leader>b` for buffers
 - `<leader>c` for code actions
+- `<leader>d` for debugging (DAP)
 - `<leader>g` for git
+- `<leader>r` for refactoring
 - `<leader>s` and `<leader>f` for searches
 - `<leader>t` for tests
-- `<leader>x` for debugging
+- `<leader>u` for UI reconfiguration
+- `<leader>uI` to show treesitter tree
+- `<leader>w` for windows
+- `<leader><tab>` for tabs
+- `<leader>x` for diagnostics and similar
+- `g` goto (or show)
+- `]` and `[` to navigate diagnostics, errors, git changes, ...
+
+### Local configs
+
+`.lazy.lua` file at project level is loaded after all other plugins. For per-project configuration
+
+BTW: if `exrc` option is set, then `.nvim.lua` is also sourced.
+
+### Brief description of plugins
+
+_WARNING_: This might be inaccurate and needs markdown formatting.
+
+aerial: provides `:AerialToggle` (should be bound to leader-cs but outline hijacked it) and `:AerialNavTogle`.
+This opens a symbol browser. `?` in the window opens keyboard help
+
+blink & blink-copilot: are completion related.
+
+bufferline: controls buffers and tabs at the top of the window
+
+catppuccin: a theme (unused?)
+
+conform: a formatter. Invoked with leader-cf and leader-cF
+
+copilot: completion with GitHub Copilot
+
+crates: for crates.io dependencies (rust)
+
+dial: increase/decrease numbers/dates/... in visual mode with C-X and C-A. Maybe I remove it later
+
+flash: search with `s` , then type the letter of the red label to jump into it
+
+friendly-snippets: collection of snippets
+
+fzf-lua: All the leader+s and more. ":FzfLua builtin" for metamenu
+
+gitsigns: Related to git editiing. It offers several features:
+
+- Marks editing in the gutter (and lualine).
+- `[` or `]` with h or H to navigate "hunks".
+- leader+gh for operations like staging.
+- :Gitsigns command for things like blame
+
+grug-far: find and replace (leader-sr)
+
+inc-rename: LSP rename with feedback (:IncRename or leader-cr)
+
+kulala: REST operations (leader-R). This is only present in http or rest filetypes, or in codeblocks.
+
+lazydev configures LuaLS. I still haven't understood what it does
+
+lazy: the core loader
+
+LazyVim: all the defaults, configs, ... of lazyvim
+
+lua-console and neorepl were added by me for lua debugging
+
+lualine: The bottom status line. Also the top status line, called "winbar"
+
+luasnip: snippet engine
+
+markdown-preview: leader-cp. Under WSL, it insists on using cmd.exe, so I created a symlink
+
+mason-lspconfig: bridges mason and lspconfig ??
+provides :LspInstall as a wrapper of :MasonInstall. Without arguments it offers those relevant for current filetype. With one argument, those for that filetype
+
+mason.nvim: package manager for LSP, dap servers, linters, formatters
+
+mason-nvim-dap: to take care of debug adapters
+
+mini.ai: for `a`/`i` (around/inside) textobjects. Textobjects are used in virtual mode or after an operator.
+So for example `di(` deletes inside parenthesis and `da(` also deletes the enclosing parenthesis
+The plugin adds more textobjects.
+
+mini.files: leader-fm (or leader-fM) file explorer
+
+mini.hipatterns: configurable highlighting of patterns like TODO, FIXME, HACK, NOTE, ...
+This plugin only higlights. The folke/todo-comment does more, but it works on "cwd" from when you start vim. I found the trick with keymaps but it's not perfect
+
+mini.icons: icons (mostly filetypes) for other plugins
+
+mini.move: move line (or visual block) with alt+l/k/j/h
+
+mini.pairs: auto insert pair for [] {} () "" '' ``
+
+neoconf: json files to ocnfigure LSP ???
+
+neogen: generate annotation (function signatures) Is it really useful?
+
+neotest. framework for testing. see webpage for available adapters
+
+neotest-golang and neotest-python: adapters for go and python
+
+noice: pretty menus, alerts, ....
+
+none-ls: LSP central server
+
+nui: UI components for other plugins
+
+nvim-dap: Debug adapter Protocol. a framework for debugging
+
+nvim-dap-go, nvim-dap-python: adapters for go and python
+
+nvim-dap-ui: UI for nvim-dap
+
+nvim-dap-virtual-text: show variable values in the code while debugging
+
+nvim-jdtls: Java LSP and DAP
+
+nvim-lint: An asynchronous linter plugin for Neovim complementary to the built-in Language Server Protocol support.
+
+nvim-lspconfig: configurations for LSP servers. I also used it to reconfigured vim.diagnostic
+LSPs are enabled with vim.lsp.enable('server_name')
+
+nvim-metals: Scala LSP
+
+nvim-navic: LSP symbol navigation for lualine. Does it work out of the box or do I need
+it also recommends [navbuddy](https://github.com/hasansujon786/nvim-navbuddy)
+
+nvim-nio: library for async io for other plugins
+
+nvim-treesitter: treesitter is a parser.
+
+- Check status with :TSInstallInfo
+- Install with :TSInstall language
+- Update with :TSUpdate
+- Uninstall with :TSUninstall language
+- Use :TSModuleInfo list information about module state for each filetype
+- :TSBufEnable and :TSBufDisable to enable/disable module on current buffer
+- :TSEnable and :TSDisable to enable/disable module on every buffer. If filetype is specified, enable/disable only for this filetype.
+- More help with :h nvim-treesitter-commands
+
+nvim-treesitter-textobjects: textobjects based on treesitter. defines some and allows to define more
+
+nvim-ts-autotag: auto close and rename html tags `<strong>xx</strong>`
+
+one-small-step-for-vimkind: DAP adapter for lua. see webpage for quickstart
+
+outline: outline (ie. TOC, index) browser .Toggle with leader-cs
+
+persistence: save status automatically. restore from initial nvim dashboard
+
+plenary: misc utils library used by other plugins
+
+refactoring: implements the leader-r functions (some only in visual mode)
+
+render-markdown: makes markdown nicer. Inside vim screen; do not confuse with markdown preview, that shows in external browser
+
+rustaceanvim: advanced LSP for Rust
+
+schemastore: used by yaml and json LSPs
+
+snacks: provides many pickers and extra utils utils, but I am unsure which ones are finally used and which ones are replaced by other plugins like fzflua.
+snacks has several components; use checkhealth to see each one. Leader keys and what they search:
+- , buffers
+- / grep root dir
+- : command history
+- space files root dir
+- n notifications
+- f many things (see whichkey)
+- g also many git-related things
+
+todo-comments by folke is supposed to highlight, have lists, ... but it works at folder level, not current buffer. I am keeping it but may remove later
+
+tokyonight: color scheme
+
+trouble: leader-c and leader-x functions. also :Trouble
+
+ts-comments: some auxiliary lib
+
+vim-dadbod\*: database interface. command :DB or :DBUI or leader-D
+
+vim-helm. Syntax for helm
+
+vim-illuminate: highlight other uses of the word under the cursor. uses LSP
+
+vim-startuptime: to profile startup time
+
+vimtex: suport for Latex
+
+which-key: Shows available keymaps
+
+yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 
 ## License
 
