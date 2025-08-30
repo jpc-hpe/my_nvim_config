@@ -205,6 +205,9 @@ These are two plugins not part of LazyVim that I added for learning lua.
 
 A plugin not part of LazyVim that is similar to VSCode GitHub Copilot.
 
+### mini-hipatterns
+
+This plugin highlights strings such as TODO, FIXME, ... I added some patterns that I typically use to the default config.
 
 ## Misc infos
 
