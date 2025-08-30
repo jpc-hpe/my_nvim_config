@@ -197,6 +197,15 @@ I reconfigured conform debug level, at least while experiment with LSPs and form
 
 This plugin works by default in the current working directory. While some of the commands accept a `cwd` option, not all of them do. I initially created a fork of the plugin, but finally decided to have keymaps that temporarily switch the cwd , execute the command, and then switch back. I am unsure if this can create race conditions for other plugins, so use it at your own risk.
 
+### luaconsole and neorepl
+
+These are two plugins not part of LazyVim that I added for learning lua.
+
+### codecompannion
+
+A plugin not part of LazyVim that is similar to VSCode GitHub Copilot.
+
+
 ## Misc infos
 
 No change in the environment, just some infos I gathered:
