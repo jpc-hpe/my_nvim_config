@@ -209,15 +209,28 @@ A plugin not part of LazyVim that is similar to VSCode GitHub Copilot.
 
 This plugin highlights strings such as TODO, FIXME, ... I added some patterns that I typically use to the default config.
 
+### snacks
+
+This plugins is responsible for multiple things. So far, I have only reconfigured the time that the disappearing messages remain on screen, as the default value was too small for my taste
+
 ## Misc infos
 
 No change in the environment, just some infos I gathered:
 
+### Distraction free modes
+
 - zen mode (`<leader>uz`) for less distractions
 - Zoom mode (`<leader>uZ`) is similar. One comes from folke, the other from snacks
+
+### Useful keys to remember
 - `<leader>x` for diagnostics and similar
 - `<leader>uf` (global) or `<leader>uF` (buffer) to toggle autoformat
-- `<leader>s` for searches
+- `<leader>b` for buffers
+- `<leader>c` for code actions
+- `<leader>g` for git
+- `<leader>s` and `<leader>f` for searches
+- `<leader>t` for tests
+- `<leader>x` for debugging
 
 ## License
 
