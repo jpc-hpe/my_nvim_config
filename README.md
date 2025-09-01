@@ -144,6 +144,9 @@ at the beginning (and rename any other file for the same plugin) and you will ge
 LazyVim is using for that plugin.
 This can be useful to find parameters to tweak.
 
+EDIT: I found a better way to do that. Look at [this file](lua/plugins/zzz_dbg.lua.no). The file name must be such so it comes (alphabetically) after all the other files.
+This is becasue lazy.nvim "merges" the files in alphabetically order so you want the debug to happen after any other customizations have been applied.
+
 Whenever I add a file to reconfigure a provided plugin, I add `optional = true` so the file is not forcing the plugin if it later disappears from my setup.
 
 ### noice (bring back the command line)
@@ -454,6 +457,15 @@ which-key: Shows available keymaps
 
 yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 
+### concepts
+
+- The location list is local to a window. Open it with :lopen or :lw
+- The quickfix list is global. Open it with :copen or :cw
+- Some plugins fill one of those lists, some fill the other
+
+- The status line is what you see at the bottom of a window
+- The winbar is similar but at the top of the window
+- The tabline alows to select which buffer
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).

@@ -1,0 +1,68 @@
+local CONFIG = vim.fn.stdpath("config")
+local function xinspect(v)
+  return vim.inspect(v, {
+    process = function(item)
+      if type(item) == "function" then
+        local info = debug.getinfo(item, "Sln")
+        return string.format(
+          "<function: %s [%d-%d]>",
+          info.source or "C function",
+          info.linedefined or -1,
+          info.lastlinedefined or -1
+        )
+      end
+      return item
+    end,
+  })
+end
+
+local function write_pluginconfig(plugininfo, opts)
+  local pluginname = plugininfo.name
+  -- Convert pluginname like 'foo/bar.nvim' to 'foo_bar_nvim'
+  local fname = pluginname:gsub("[/.]", "_")
+  local dir = CONFIG .. "/cfgdumps"
+  vim.fn.mkdir(dir, "p")
+  local spec_path = dir .. "/" .. fname .. ".spec.lua"
+  local spec_file = io.open(spec_path, "w")
+  spec_file:write(string.format("return {\"%s\",opts = %s}\n", pluginname, xinspect(opts)))
+  spec_file:close()
+  local info_path = dir .. "/" .. fname .. ".info.lua"
+  local info_file = io.open(info_path, "w")
+  info_file:write("plugininfo=" .. xinspect(plugininfo))
+  info_file:close()
+end
+
+local function make_plugin_specs(names)
+  local specs = {}
+  for _, name in ipairs(names) do
+    table.insert(specs, {
+      name,
+      optional = true,
+      opts = write_pluginconfig,
+    })
+  end
+  return specs
+end
+
+-- JPC: one line for each plugin you want to dump
+-- I left commented 2 of them where thsi causes problems.
+return make_plugin_specs({
+  "echasnovski/mini.hipatterns",
+  "folke/noice.nvim",
+  "folke/snacks.nvim",
+  "folke/tokyonight.nvim",
+  "folke/which-key.nvim",
+  -- "ii14/neorepl.nvim",
+  "jpc-hpe/chitshit.nvim",
+  "mfussenegger/nvim-lint",
+  "neovim/nvim-lspconfig",
+  "nvim-lualine/lualine.nvim",
+  -- "nvim-lua/plenary.nvim",
+  "nvimtools/none-ls.nvim",
+  "nvim-treesitter/nvim-treesitter",
+  "olimorris/codecompanion.nvim",
+  "saghen/blink.cmp",
+  "stevearc/conform.nvim",
+  "yarospace/lua-console.nvim",
+  "zbirenbaum/copilot.lua",
+})
