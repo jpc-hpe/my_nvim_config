@@ -11,6 +11,11 @@ return {
       diagnostics = {
         virtual_text = false,
       },
+      servers = {
+        harper_ls = {
+          autostart = false,
+        },
+      },
     },
   },
 }
