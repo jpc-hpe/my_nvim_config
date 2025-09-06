@@ -228,7 +228,7 @@ I find that the virtual text about diagnostics (specially now that I am experime
 
 I then explore the diagnostics with `:Trouble diagnostics` (leader-xx) or `:FzfLua diagnosics_document` (leader-sd)
 
-I also have disable `harper_ls` at startup as it introduces too much noise. I can always reenable with my custom command (TODO: document it)
+I also have disabled `harper_ls` at startup as it introduces too much noise. I can always reenable with my custom command (TODO: document it). Same applies for `vale_ls`
 
 ### conform debugging
 

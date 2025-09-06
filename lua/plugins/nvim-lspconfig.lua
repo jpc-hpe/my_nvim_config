@@ -15,6 +15,9 @@ return {
         harper_ls = {
           autostart = false,
         },
+        vale_ls = {
+          autostart = false,
+        },
       },
     },
   },
