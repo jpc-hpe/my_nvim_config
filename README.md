@@ -20,7 +20,7 @@ customizations in the hope that it can help others facing my same problems.
     - [blink and copilot](#blink-and-copilot)
     - [lualine](#lualine)
     - [markdownlint-cli2](#markdownlint-cli2)
-    - [diagnostics virtual text](#diagnostics-virtual-text)
+    - [nvim-lspconfig](#nvim-lspconfig)
     - [conform debugging](#conform-debugging)
     - [todo-comments](#todo-comments)
     - [luaconsole and neorepl](#luaconsole-and-neorepl)
@@ -31,9 +31,12 @@ customizations in the hope that it can help others facing my same problems.
     - [Distraction free modes](#distraction-free-modes)
     - [Useful keys to remember](#useful-keys-to-remember)
     - [Local configs](#local-configs)
+    - [trouble.nvim deepdive](#troublenvim-deepdive)
     - [Brief description of plugins](#brief-description-of-plugins)
+    - [concepts](#concepts)
   - [License](#license)
 <!--toc:end-->
+
 ## My setup
 
 I am using [LazyVim](https://www.lazyvim.org/) as the base, so the initial structure is that of the [starter](https://github.com/LazyVim/starter)
@@ -284,6 +287,48 @@ No change in the environment, just some info I gathered:
 
 BTW: if `exrc` option is set, then `.nvim.lua` is also sourced.
 
+### trouble.nvim deepdive
+
+- syntax in Trouble mode command args
+- mode is
+  - fzf and fzf_files : result of last fzf search (if enabled)
+  - snacks and snacks_files : result of last snacks picker  (if enabled)
+  - telescope and telescope-files  (if enabled)
+  - lsp is the combination of the following and opens to the right:
+    - lsp_declarations
+    - lsp_definitions
+    - lsp_implementations
+    - lsp incoming_calls
+    - lsp outgoing_calls
+    - lsp_references
+    - lst_type_definitions
+  - symbols==lsp_document_symbols
+  - lsp_command ??? . Needs params and wraps the LSP "workspace/executeCommand"
+  - ºxL loclist
+  - ºxQ qflist==quickfix
+  - ºxt and ºxT and ººtt todo (not native, uses folke/todo)
+  - ºxx and ºxX diagnostics
+  - profiler uses snacks profiler ???
+  - [ ] add shortcut: symbols (LSP document symbols) to the right
+- command is show (default), toggle, close
+- api has also is_open, refresh, get_items, cancel, delete, filter, first, last, next, prev, focus, fold_xxx, help, inspect, jump, jump_close, jump_only, jump_split, jump_split_close, jump_vsplit, jump_vsplit_close, preview, refresh, toggle_preview, toggle_refresh
+- args
+  - filter
+    - filter.buf=0 for only current buffer
+    - a function that filters (see advanced example at  <https://github.com/folke/trouble.nvim/blob/main/docs/examples.md> for cascading severity)
+    - not, any
+    - basename, dirname, filename, ft, kind (:h symbol), pos, severity, source
+  - focus=true or false to focus or not on newly opened
+  - follow to reposition the trouble window as you move in main windows. The opposite seems to always be true, if you click in a trouble the main window moves to the problem
+  - win.position=right to decide where to put
+  - `pinned` option to pin the buffer as the source for the opened trouble window ??
+- In the window:
+  - `?` shows help.
+    -`gb` for local buffer filter
+  - jump (double click or enter) moves again to main window at the exact point of the error
+  - dd for delete complains modifiable is false, unless you set preview.scratch=false
+  - z... for folding
+
 ### Brief description of plugins
 
 _WARNING_: This might be inaccurate and needs markdown formatting.
@@ -429,6 +474,7 @@ schemastore: used by yaml and json LSPs
 
 snacks: provides many pickers and extra utils utils, but I am unsure which ones are finally used and which ones are replaced by other plugins like fzflua.
 snacks has several components; use checkhealth to see each one. Leader keys and what they search:
+
 - , buffers
 - / grep root dir
 - : command history
@@ -459,6 +505,11 @@ which-key: Shows available keymaps
 
 yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 
+### brief description of LSPs and other things installed with mason
+
+- marksman offers completions (for blink) and an action to create table of contents for markdown
+
+
 ### concepts
 
 - The location list is local to a window. Open it with :lopen or :lw
@@ -468,6 +519,7 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 - The status line is what you see at the bottom of a window
 - The winbar is similar but at the top of the window
 - The tabline alows to select which buffer
+
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).
