@@ -263,6 +263,10 @@ No change in the environment, just some info I gathered:
 - zen mode (`<leader>uz`) for less distractions
 - Zoom mode (`<leader>uZ`) is similar. One comes from folke, the other from snacks
 
+### Menus
+
+NeoVim running without GUI supports the "PopUp" menu on right mouse button click. I intended to use it, but then I discovered that submenus are not supported in this case. Therefore I abandoned this path and am using keymaps (with which-keys configured to show descriptions for common prefixes)
+
 ### Useful keys to remember
 
 - `<leader>uf` (global) or `<leader>uF` (buffer) to toggle autoformat
@@ -508,7 +512,8 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 ### brief description of LSPs and other things installed with mason
 
 - marksman offers completions (for blink) and an action to create table of contents for markdown
-
+- harper_ls checks spelling and correct writing. Intented for text (or markdown) documents mostly. One of tjhe features is that when you add a known word you can choose the dictionary "level" (user, workspace, file-local, and static)
+- vale_ls is similar to harper_ls. It offers several sets of preconfigured rules.
 
 ### concepts
 
