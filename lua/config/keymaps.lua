@@ -6,7 +6,7 @@
 -- so i decided to use "<leader><leader>c" for chitshit commands
 vim.keymap.set(
   "n",
-  "<Leader><Leader>ck",
+  "<Leader><Leader>kc",
   ":ChitshitKeymaps<CR>",
   { noremap = true, silent = true, desc = "Chitshit: Show keymaps cheatsheet" }
 )
@@ -28,7 +28,7 @@ vim.keymap.set("c", "<Right>", function()
 end, { expr = true })
 
 -- JPC: debug keys sent in you environment
-vim.keymap.set("n", "<Leader><Leader>cx", function()
+vim.keymap.set("n", "<Leader><Leader>kd", function()
   local mod_map = {
     [2] = "shift",
     [4] = "control",
@@ -107,3 +107,24 @@ end, { desc = "Trouble TODOs in current file" })
 vim.keymap.set("n", "<leader><leader>tf", function()
   command_in_file_cwd("TodoFzfLua")
 end, { desc = "Fzf TODOs in current file" })
+
+vim.keymap.set("n", "<leader><leader>lh", ":LspToggle harper_ls<CR>", { desc = "Toggle harper_ls" })
+vim.keymap.set("n", "<leader><leader>lv", ":LspToggle vale_ls<CR>", { desc = "Toggle vale_ls" })
+vim.keymap.set(
+  "n",
+  "<leader><leader>ls",
+  ":Trouble symbols toggle filter.buf=0 focus=false<CR>",
+  { desc = "Trouble symbols" }
+)
+vim.keymap.set(
+  "n",
+  "<leader><leader>ld",
+  ":Trouble diagnostics toggle filter.buf=0 preview.scratch=false<CR>",
+  { desc = "Trouble diagnostics" }
+)
+vim.keymap.set(
+  "n",
+  "<leader><leader>ll",
+  ":Trouble lsp toggle filter.buf=0<CR>",
+  { desc = "Trouble lsp" }
+)

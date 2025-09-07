@@ -35,4 +35,28 @@ vim.o.title = true -- Set the terminal title to the file name
 
 vim.g.autoformat = false -- I prefer to manually format with <Leader>cf or :LazyFormat
 -- vim.g.snacks_animate = false ??
-vim.g.deprecation_warnings= true
+vim.g.deprecation_warnings = true
+
+-- JPC define command to toggle an LSP
+vim.api.nvim_create_user_command("LspToggle", function(opts)
+  local name = opts.args
+  local clients = vim.lsp.get_clients()
+  for _, client in ipairs(clients) do
+    if client.name == name then
+      vim.cmd("LspStop " .. name)
+      return
+    end
+  end
+  vim.cmd("LspStart " .. name)
+end, {
+  nargs = 1,
+  complete = function()
+    local servers = require("lspconfig.util").available_servers()
+    return servers
+  end,
+})
+
+vim.o.mousemodel = "popup"
+--
+-- Leave this at the end so it sources my menu definitions
+require("config.mymenus")

@@ -6,6 +6,20 @@ return {
       scroll_up = "<S-Up>", -- binding to scroll down inside the popup
       scroll_down = "<S-Down>", -- binding to scroll up inside the popup
     },
+    spec = {
+      {
+        "<leader><leader>t",
+        desc = "TO-DO related",
+      },
+      {
+        "<leader><leader>k",
+        desc = "Keymap related",
+      },
+      {
+        "<leader><leader>l",
+        desc = "LSP related",
+      },
+    },
   },
   keys = {
     {
