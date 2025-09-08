@@ -1,6 +1,5 @@
 # Things to explore some day
 
-- [ ] .nvim/config/lazy->performance.rtp.paths to have a path with all docs even if unloaded??
 - [ ] refine ghost colors
 - [ ] codecompanion
 - [ ] investigate LazyVim/lua/lazyvim/plugins/extras/lsp/none-ls.lua and none-ls to add my own
@@ -13,18 +12,8 @@
 - [ ] mini.ai deepdive
 - [ ] investigate neoconf
 - [ ] review neotest adapters
-- [ ] review nvim-tree-sitter commands
 - [ ] complete yanky description
-- [ ] review examples at https://github.com/folke/trouble.nvim/blob/main/docs/examples.md and use_diagnostic_signs = true 
-- [ ] menus
-  - help usr_42.txt
-  - help :menutrans
-  - :emenu
-  - help popup-menu
-  - :popup
 
-
-  
-
-
-
+- [ ] Diagnose "strange death" (upon exit, the containing shell and window are also killed)
+it only started after some play so I suspect one of the things added with mason
+suspects:
