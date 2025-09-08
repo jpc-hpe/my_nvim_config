@@ -29,10 +29,13 @@ customizations in the hope that it can help others facing my same problems.
     - [snacks](#snacks)
   - [Miscellaneous information](#miscellaneous-information)
     - [Distraction free modes](#distraction-free-modes)
+    - [Menus](#menus)
     - [Useful keys to remember](#useful-keys-to-remember)
     - [Local configs](#local-configs)
     - [trouble.nvim deepdive](#troublenvim-deepdive)
-    - [Brief description of plugins](#brief-description-of-plugins)
+    - [nvim-tree-sitter](#nvim-tree-sitter)
+    - [Brief description of other plugins](#brief-description-of-other-plugins)
+    - [brief description of LSPs and other things installed with mason](#brief-description-of-lsps-and-other-things-installed-with-mason)
     - [concepts](#concepts)
   - [License](#license)
 <!--toc:end-->
@@ -293,6 +296,8 @@ BTW: if `exrc` option is set, then `.nvim.lua` is also sourced.
 
 ### trouble.nvim deepdive
 
+It supplies many of the leader-c and leader-x functions. Also the :Trouble command
+
 - syntax in Trouble mode command args
 - mode is
   - fzf and fzf_files : result of last fzf search (if enabled)
@@ -333,7 +338,31 @@ BTW: if `exrc` option is set, then `.nvim.lua` is also sourced.
   - dd for delete complains modifiable is false, unless you set preview.scratch=false
   - z... for folding
 
-### Brief description of plugins
+### nvim-tree-sitter
+
+It offers these commands related to treesitter parser:
+
+- info:
+  - `TSInstallInfo` (shows installed parsers)
+  - `TSModuleInfo` shows info about installed modules
+- install
+  - `TSInstall <lang>` (autocompletion)
+  - `TSUPdate <lang>` updates one, `TSUpdate` updates all installed
+  - `TSUninstall <lang>`
+- enable/disable
+  - `TSBufEnable <module>` enables a module for the current buffer
+  - `TSBufDisable <module>` disables a module for the current buffer
+  - `TSBufToggle <module>` toggles a module for the current buffer
+  - `TSEnable <module> [lang]` enables a module globally for the session. If lang is given, only for that language
+  - `TSDisable <module> [lang]` disables a module globally for the session. If lang is given, only for that language
+  - `TSToggle <module> [lang]` toggles a module globally for the session. If lang is given, only for that language
+- query:
+  - `TSEditQuery group [lang]` edit queries for a group and language. if there are several, a selection menu is shown. If ther is none, a new query file is created in user config dir. if lang is nto specified, the language of the current buffer is used
+  - `TSeditQueryUserAfter group [lang]` is the same but in the "after" directory. Useful to add custom extensions
+
+One important command (but it is offered by NeoVim itself; not this plugin) is `:InspectTree`
+
+### Brief description of other plugins
 
 _WARNING_: This might be inaccurate and needs markdown formatting.
 
@@ -445,17 +474,6 @@ it also recommends [navbuddy](https://github.com/hasansujon786/nvim-navbuddy)
 
 nvim-nio: library for async io for other plugins
 
-nvim-treesitter: treesitter is a parser.
-
-- Check status with :TSInstallInfo
-- Install with :TSInstall language
-- Update with :TSUpdate
-- Uninstall with :TSUninstall language
-- Use :TSModuleInfo list information about module state for each filetype
-- :TSBufEnable and :TSBufDisable to enable/disable module on current buffer
-- :TSEnable and :TSDisable to enable/disable module on every buffer. If filetype is specified, enable/disable only for this filetype.
-- More help with :h nvim-treesitter-commands
-
 nvim-treesitter-textobjects: textobjects based on treesitter. defines some and allows to define more
 
 nvim-ts-autotag: auto close and rename html tags `<strong>xx</strong>`
@@ -490,8 +508,6 @@ snacks has several components; use checkhealth to see each one. Leader keys and 
 todo-comments by folke is supposed to highlight, have lists, ... but it works at folder level, not current buffer. I am keeping it but may remove later
 
 tokyonight: color scheme
-
-trouble: leader-c and leader-x functions. also :Trouble
 
 ts-comments: some auxiliary lib
 
