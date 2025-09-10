@@ -151,7 +151,7 @@ LazyVim is using for that plugin.
 This can be useful to find parameters to tweak.
 
 EDIT: I found a better way to do that. Look at [this file](lua/plugins/zzz_dbg.lua.no). The file name must be such so it comes (alphabetically) after all the other files.
-This is becasue lazy.nvim "merges" the files in alphabetically order so you want the debug to happen after any other customizations have been applied.
+This is because lazy.nvim "merges" the files in alphabetically order so you want the debug to happen after any other customizations have been applied.
 
 Whenever I add a file to reconfigure a provided plugin, I add `optional = true` so the file is not forcing the plugin if it later disappears from my setup.
 
@@ -231,7 +231,7 @@ I find that the virtual text about diagnostics (specially now that I am experime
 
 I then explore the diagnostics with `:Trouble diagnostics` (leader-xx) or `:FzfLua diagnosics_document` (leader-sd)
 
-I also have disabled `harper_ls` at startup as it introduces too much noise. I can always reenable with my custom `LspToggle` command (defined in `lua/config/options.lua`). Same applies for `vale_ls`
+I also have disabled `harper_ls` at startup as it introduces too much noise. I can always re-enable with my custom `LspToggle` command (defined in `lua/config/options.lua`). Same applies for `vale_ls`
 
 ### conform debugging
 
@@ -287,6 +287,10 @@ NeoVim running without GUI supports the "PopUp" menu on right mouse button click
 - `<leader>x` for diagnostics and similar
 - `g` goto (or show)
 - `]` and `[` to navigate diagnostics, errors, git changes, ...
+- C-r is redo (opposite of undo). I don't know why I keep forgetting it
+- But in insert mode C-r is to insert from a register. 
+
+All default keys are documented in `:help index`
 
 ### Local configs
 
@@ -438,7 +442,15 @@ mini.move: move line (or visual block) with alt+l/k/j/h
 
 mini.pairs: auto insert pair for [] {} () "" '' ``
 
-neoconf: json files to ocnfigure LSP ???
+neoconf: Use json files to configure LSP. These files can be:
+
+- global settings: `~/.config/nvim/neoconf.json`
+- project root settings: `.../.neoconf.json`
+- it can also import from vscode
+
+There is also autompletion for those files. And in integrates with neodev (whatever that means??)
+
+But I still haven't found a real use for it
 
 neogen: generate annotation (function signatures) Is it really useful?
 
@@ -528,8 +540,8 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 ### brief description of LSPs and other things installed with mason
 
 - marksman offers completions (for blink) and an action to create table of contents for markdown
-- harper_ls checks spelling and correct writing. Intented for text (or markdown) documents mostly. One of tjhe features is that when you add a known word you can choose the dictionary "level" (user, workspace, file-local, and static)
-- vale_ls is similar to harper_ls. It offers several sets of preconfigured rules.
+- harper_ls checks spelling and correct writing. Intended for text (or markdown) documents mostly. One of tjhe features is that when you add a known word you can choose the dictionary "level" (user, workspace, file-local, and static)
+- vale_ls is similar to harper_ls. It offers several sets of preconfigured rules. But it does not offer code actions to fix or ignore spelling
 
 ### concepts
 
@@ -539,7 +551,14 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 
 - The status line is what you see at the bottom of a window
 - The winbar is similar but at the top of the window
-- The tabline alows to select which buffer
+- The tabline allows to select which buffer
+
+- conceallevel seems to be automatically managed by some plugins or LSPs. On new blank buffer, I can modify it. But on a markdown file, it stays at 3 even after changing it
+
+### miscellaneous notes
+
+`:help xxx | only` (or `:only` in the help split) to see help in full windows. Initially the help doesn't appear in the bufline, but with `<leader>bb` executed twice it starts appearing
+
 
 ## License
 
