@@ -9,7 +9,7 @@ This is my scratchpad for information I gather
 
 ## Menus
 
-NeoVim running without GUI supports the "PopUp" menu on right mouse button click. I intended to use it, but then I discovered that submenus are not supported in this case. Therefore I abandoned this path and am using keymaps (with which-keys configured to show descriptions for common prefixes)
+NeoVim running without GUI supports the "PopUp" menu on right mouse button click. I intended to use it, but then I discovered that submenus are not supported in this case. Therefore, I abandoned this path and am using keymaps (with which-keys configured to show descriptions for common prefixes)
 
 ## Useful keys to remember
 
@@ -29,7 +29,7 @@ NeoVim running without GUI supports the "PopUp" menu on right mouse button click
 - `g` goto (or show)
 - `]` and `[` to navigate diagnostics, errors, git changes, ...
 - C-r is redo (opposite of undo). I don't know why I keep forgetting it
-- But in insert mode C-r is to insert from a register. 
+- But in insert mode C-r is to insert from a register.
 
 All default keys are documented in `:help index`
 
@@ -46,8 +46,8 @@ It supplies many of the leader-c and leader-x functions. Also the :Trouble comma
 - syntax in Trouble mode command args
 - mode is
   - fzf and fzf_files : result of last fzf search (if enabled)
-  - snacks and snacks_files : result of last snacks picker  (if enabled)
-  - telescope and telescope-files  (if enabled)
+  - snacks and snacks_files : result of last snacks picker (if enabled)
+  - telescope and telescope-files (if enabled)
   - lsp is the combination of the following and opens to the right:
     - lsp_declarations
     - lsp_definitions
@@ -57,7 +57,7 @@ It supplies many of the leader-c and leader-x functions. Also the :Trouble comma
     - lsp_references
     - lst_type_definitions
   - symbols==lsp_document_symbols
-  - lsp_command ??? . Needs params and wraps the LSP "workspace/executeCommand"
+  - lsp_command ???. Needs params and wraps the LSP "workspace/executeCommand"
   - ºxL loclist
   - ºxQ qflist==quickfix
   - ºxt and ºxT and ººtt todo (not native, uses folke/todo)
@@ -69,7 +69,7 @@ It supplies many of the leader-c and leader-x functions. Also the :Trouble comma
 - args
   - filter
     - filter.buf=0 for only current buffer
-    - a function that filters (see advanced example at  <https://github.com/folke/trouble.nvim/blob/main/docs/examples.md> for cascading severity)
+    - a function that filters (see advanced example at <https://github.com/folke/trouble.nvim/blob/main/docs/examples.md> for cascading severity)
     - not, any
     - basename, dirname, filename, ft, kind (:h symbol), pos, severity, source
   - focus=true or false to focus or not on newly opened
@@ -102,7 +102,7 @@ It offers these commands related to treesitter parser:
   - `TSDisable <module> [lang]` disables a module globally for the session. If lang is given, only for that language
   - `TSToggle <module> [lang]` toggles a module globally for the session. If lang is given, only for that language
 - query:
-  - `TSEditQuery group [lang]` edit queries for a group and language. if there are several, a selection menu is shown. If ther is none, a new query file is created in user config dir. if lang is nto specified, the language of the current buffer is used
+  - `TSEditQuery group [lang]` edit queries for a group and language. If there are several, a selection menu is shown. If there is none, a new query file is created in user config dir. If lang is not specified, the language of the current buffer is used
   - `TSeditQueryUserAfter group [lang]` is the same but in the "after" directory. Useful to add custom extensions
 
 One important command (but it is offered by NeoVim itself; not this plugin) is `:InspectTree`
@@ -134,7 +134,7 @@ friendly-snippets: collection of snippets
 
 fzf-lua: All the leader+s and more. ":FzfLua builtin" for metamenu
 
-gitsigns: Related to git editiing. It offers several features:
+gitsigns: Related to git editing. It offers several features:
 
 - Marks editing in the gutter (and lualine).
 - `[` or `]` with h or H to navigate "hunks".
@@ -175,7 +175,7 @@ The plugin adds more textobjects.
 mini.files: leader-fm (or leader-fM) file explorer
 
 mini.hipatterns: configurable highlighting of patterns like TODO, FIXME, HACK, NOTE, ...
-This plugin only higlights. The folke/todo-comment does more, but it works on "cwd" from when you start vim. I found the trick with keymaps but it's not perfect
+This plugin only highlights. The folke/todo-comment does more, but it works on "cwd" from when you start vim. I found the trick with keymaps but it's not perfect
 
 mini.icons: icons (mostly filetypes) for other plugins
 
@@ -189,7 +189,7 @@ neoconf: Use json files to configure LSP. These files can be:
 - project root settings: `.../.neoconf.json`
 - it can also import from vscode
 
-There is also autompletion for those files. And in integrates with neodev (whatever that means??)
+There is also autocompletion for those files. And in integrates with neodev (whatever that means??)
 
 But I still haven't found a real use for it
 
@@ -199,7 +199,7 @@ neotest. framework for testing. see webpage for available adapters
 
 neotest-golang and neotest-python: adapters for go and python
 
-noice: pretty menus, alerts, ....
+noice: pretty menus, alerts, ...
 
 none-ls: LSP central server
 
@@ -217,7 +217,7 @@ nvim-jdtls: Java LSP and DAP
 
 nvim-lint: An asynchronous linter plugin for Neovim complementary to the built-in Language Server Protocol support.
 
-nvim-lspconfig: configurations for LSP servers. I also used it to reconfigured vim.diagnostic
+nvim-lspconfig: configurations for LSP servers. I also used it to reconfigure vim.diagnostic
 LSPs are enabled with vim.lsp.enable('server_name')
 
 nvim-metals: Scala LSP
@@ -247,7 +247,7 @@ rustaceanvim: advanced LSP for Rust
 
 schemastore: used by yaml and json LSPs
 
-snacks: provides many pickers and extra utils utils, but I am unsure which ones are finally used and which ones are replaced by other plugins like fzflua.
+snacks: provides many pickers and extra utils, but I am unsure which ones are finally used and which ones are replaced by other plugins like fzflua.
 snacks has several components; use checkhealth to see each one. Leader keys and what they search:
 
 - , buffers
@@ -272,7 +272,7 @@ vim-illuminate: highlight other uses of the word under the cursor. uses LSP
 
 vim-startuptime: to profile startup time
 
-vimtex: suport for Latex
+vimtex: support for Latex
 
 which-key: Shows available keymaps
 
@@ -281,7 +281,7 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 ## brief description of LSPs and other things installed with mason
 
 - marksman offers completions (for blink) and an action to create table of contents for markdown
-- harper_ls checks spelling and correct writing. Intended for text (or markdown) documents mostly. One of tjhe features is that when you add a known word you can choose the dictionary "level" (user, workspace, file-local, and static)
+- harper_ls checks spelling and correct writing. Intended for text (or markdown) documents mostly. One of the features is that when you add a known word you can choose the dictionary "level" (user, workspace, file-local, and static)
 - vale_ls is similar to harper_ls. It offers several sets of preconfigured rules. But it does not offer code actions to fix or ignore spelling
 
 ## concepts
@@ -295,29 +295,67 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 - The tabline allows to select which buffer
 
 - conceallevel seems to be automatically managed by some plugins or LSPs. On new blank buffer, I can modify it. But on a markdown file, it stays at 3 even after changing it
-- marks for use with `'`. You can list them with `:marks`:
-  - `"`  is last position in the buffer
-  - `.` is last edit on the buffer
-  - a-z local to the buffer
-  - A-Z global
-  - 0-9
-  - `[`
-  - `]`
-  - `^`
-  - `<`
 
-- registers. You fill them with sequences like `"fyas` (yank a sentence, but it goes into register f). Same for deletions. You use them with sequences like `"fp` (paste, but from register f). You list them with `:registers`
- - a-z user registers
- - A-Z append to the corresponding lowercase register
- - `*` is current selection
- - `+` is real clipboard
- - 0-9
- - `.`
- - `"`
+- `nvim -d a b` opens in _diff mode_
 
-- macros. They also use the a-z registers. Record with `q{register}`. Stop recording with `q`. Use with `@{register}` (or `3@x` to repeat 3 times). Rexecute last one with `@@`. Using uppercase letters for recording appends (to the corresponfing lowercase register) instead of replacing
+## marks
 
-- `nvim -d a b` opens in *diff mode*
+These are for use with with `'`. You can list them with `:marks`:
+
+- `"` is last position in the buffer
+- `.` is last edit on the buffer
+- a-z local to the buffer
+- A-Z global
+- 0-9
+- `[`
+- `]`
+- `^`
+- `<` is visual mode selection start
+- `>` is visual mode selection end
+
+## registers
+
+You fill them with sequences like `"fyas` (yank a sentence, but it goes into register f). Same for deletions. You use them with sequences like `"fp` (paste, but from register f). You list them with `:registers`
+
+- a-z user registers
+- A-Z append to the corresponding lowercase register
+- `*` is current selection
+- `+` is real clipboard
+- 0-9
+- `.`
+- `"`
+
+## macros
+
+They also use the a-z registers. Record with `q{register}`. Stop recording with `q`. Use with `@{register}` (or `3@x` to repeat 3 times). Re-execute last one with `@@`. Using uppercase letters for recording appends (to the corresponfing lowercase register) instead of replacing
+
+
+## ranges
+
+- % is equivalent to `1,$`. You can do `:%!`; no need for ":1"+"G"
+- both sides can have offsets
+- and you can also use searches
+- So `:?^Foo?+2,/Bar$/-1s=grey=gray=g` replaces grey by gray in all lines between the second after the previous appearance of Foo at the start and the first before the next appearance of Bar at the end
+- marks are also allowed: `:'a,'b!sort`
+- `:` when in visual mode opens with `'<,'>`
+
+## visual block mode
+
+You trigger with C-V to select a rectangular area. (And, as in visual mode, `o` jumps to the "other side" for adjusting)
+
+Short lines that finish before the block "left border" are not affected
+
+- `$` extends to end of each line
+- `Istring<esc>` inserts in every line before the selection
+- `Astring<esc>` inserts in every line after the selection
+- `cstring<esc>` replaces the selected part in every line
+- `Cstring<esc>` replaces until the end in each line
+- `u` makes lowercase
+- `U` makes uppercase
+- `~` swaps case
+- `rX` replaces by char X
+- `>` and `<` to indent/dedent
+
 ## about help
 
 `:help xxx | only` (or `:only` in the help split) to see help in full windows. Initially the help doesn't appear in the bufline, but with `<leader>bb` executed twice it starts appearing. BTW: this applies to other windows too, like `:options`
@@ -327,8 +365,9 @@ But an even better way is to prepend with `tab` and then it opens in a new tab: 
 `:helpgrep` shows first match, but stores all matches in the quickfix list (so you can explore e.g with `ºxQ`)
 
 Important help pages:
- - quickref
- - index (for all the default key mappings)
+
+- quickref
+- index (for all the default key mappings)
 
 ## commands
 
@@ -342,4 +381,4 @@ Save to another file and start working on it with `:saveas anotherfile`. With `:
 
 Save or quit all windows at once with `:qall` or `:wall` (or `:wqall` to combine)
 
-
+`:[range]global/{pattern}/{command}` (where `global`is usally abbreviated to `g`) is like `:s/...`. But instead of replacing executes on the matchin lines the given command, which is something that you would write after a `:`. You can use `:normal` for normal mode commands. IN this case, teh default range is already the whole file
