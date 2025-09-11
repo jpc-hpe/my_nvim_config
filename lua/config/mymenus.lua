@@ -2,6 +2,7 @@
 -- start by removing the unwanted entries
 vim.cmd([[aunmenu PopUp.How-to\ disable\ mouse]])
 vim.cmd([[aunmenu PopUp.-2-]])
+vim.cmd([[amenu .1 PopUp.Code\ Action ºca]])
 -- JPC: And I stop here. Apparently, menus in non-gui mode do not allow submenus
 -- vim.cmd([[amenu PopUp.JPC.Toggleharper_ls <Cmd>LspToggle harper_ls<CR>]])
 -- vim.cmd([[amenu pp.JPC.kk :help]])
