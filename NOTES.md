@@ -295,7 +295,6 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 - The tabline allows to select which buffer
 
 - conceallevel seems to be automatically managed by some plugins or LSPs. On new blank buffer, I can modify it. But on a markdown file, it stays at 3 even after changing it
-
 - marks for use with `'`. You can list them with `:marks`:
   - `"`  is last position in the buffer
   - `.` is last edit on the buffer
@@ -307,9 +306,23 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
   - `^`
   - `<`
 
+- registers. You fill them with sequences like `"fyas` (yank a sentence, but it goes into register f). Same for deletions. You use them with sequences like `"fp` (paste, but from register f). You list them with `:registers`
+ - a-z user registers
+ - A-Z append to the corresponding lowercase register
+ - `*` is current selection
+ - `+` is real clipboard
+ - 0-9
+ - `.`
+ - `"`
+
+- macros. They also use the a-z registers. Record with `q{register}`. Stop recording with `q`. Use with `@{register}` (or `3@x` to repeat 3 times). Rexecute last one with `@@`. Using uppercase letters for recording appends (to the corresponfing lowercase register) instead of replacing
+
+- `nvim -d a b` opens in *diff mode*
 ## about help
 
 `:help xxx | only` (or `:only` in the help split) to see help in full windows. Initially the help doesn't appear in the bufline, but with `<leader>bb` executed twice it starts appearing. BTW: this applies to other windows too, like `:options`
+
+But an even better way is to prepend with `tab` and then it opens in a new tab: `:tab options`
 
 `:helpgrep` shows first match, but stores all matches in the quickfix list (so you can explore e.g with `ºxQ`)
 
@@ -322,5 +335,11 @@ Important help pages:
 Restore an option to default value with an ampersand: `:set iskeyword&`
 
 New buffer with `:edit` (but `<leader>e` might be easier)
+
+Append current content to another file with `:write >> somefile`
+
+Save to another file and start working on it with `:saveas anotherfile`. With `:file anotherfile` you also change the name but don't save yet.
+
+Save or quit all windows at once with `:qall` or `:wall` (or `:wqall` to combine)
 
 
