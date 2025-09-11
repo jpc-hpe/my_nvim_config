@@ -257,6 +257,10 @@ This plugin highlights strings such as TODO, FIXME, ... I added some patterns th
 
 This plugins is responsible for multiple things. So far, I have only reconfigured the time that the disappearing messages remain on screen, as the default value was too small for my taste
 
+### trouble
+
+By default, diagnostics are sorted by severity, then position. I modified the sort criteria so all similar errors (those with the same message) appear together
+
 ## License
 
 All code is licensed under the [MIT License](https://opensource.org/license/mit).
