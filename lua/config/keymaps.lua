@@ -119,7 +119,7 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "<leader><leader>ld",
-  ":Trouble diagnostics toggle filter.buf=0 preview.scratch=false<CR>",
+  ":Trouble diagnostics toggle filter.buf=0 preview.scratch=false follow=false<CR>",
   { desc = "Trouble diagnostics" }
 )
 vim.keymap.set(
