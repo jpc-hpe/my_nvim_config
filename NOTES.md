@@ -13,23 +13,26 @@ NeoVim running without GUI supports the "PopUp" menu on right mouse button click
 
 ## Useful keys to remember
 
-- `<leader>uf` (global) or `<leader>uF` (buffer) to toggle autoformat
 - `<leader>b` for buffers
 - `<leader>c` for code actions
 - `<leader>d` for debugging (DAP)
+- `<leader>f` for file operations (and terminal)
+- `<leader>fr` for recent files
 - `<leader>g` for git
+- `<leader>q` for session management
 - `<leader>r` for refactoring
-- `<leader>s` and `<leader>f` for searches
+- `<leader>s` for searches
+- `<leader><tab>` for tabs
 - `<leader>t` for tests
 - `<leader>u` for UI reconfiguration
+- `<leader>uf` (global) or `<leader>uF` (buffer) to toggle autoformat
 - `<leader>uI` to show treesitter tree
 - `<leader>w` for windows
-- `<leader><tab>` for tabs
 - `<leader>x` for diagnostics and similar
-- `g` goto (or show)
+- `g` goto (or show). Also changing case (gu/gU)
 - `]` and `[` to navigate diagnostics, errors, git changes, ...
 - C-r is redo (opposite of undo). I don't know why I keep forgetting it
-- But in insert mode C-r is to insert from a register.
+  - But in insert mode C-r is to insert from a register.
 
 All default keys are documented in `:help index`
 
@@ -298,6 +301,13 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 
 - `nvim -d a b` opens in _diff mode_
 
+- modeline must be in the first or last five lines or whatever `:set modelines` says. Use `:set nomodeline` to disable.
+  - It helps with setting options such as tab size, line length, ...
+  - format is `any-text vim:set {option}={value} ... : any-text`
+  - the `any-text` is used to make it look like a comment in whatever language the file is.
+  - if `vim:` is not at the start, then you need a space before it
+  - escape colons because otherwise the mark the end of the modeline
+
 ## marks
 
 These are for use with with `'`. You can list them with `:marks`:
@@ -306,7 +316,7 @@ These are for use with with `'`. You can list them with `:marks`:
 - `.` is last edit on the buffer
 - a-z local to the buffer
 - A-Z global
-- 0-9
+- 0 is position when you exited last, 1 is when you exited before that, ... and so on until 9
 - `[`
 - `]`
 - `^`
@@ -382,3 +392,21 @@ Save to another file and start working on it with `:saveas anotherfile`. With `:
 Save or quit all windows at once with `:qall` or `:wall` (or `:wqall` to combine)
 
 `:[range]global/{pattern}/{command}` (where `global`is usally abbreviated to `g`) is like `:s/...`. But instead of replacing executes on the matchin lines the given command, which is something that you would write after a `:`. You can use `:normal` for normal mode commands. IN this case, teh default range is already the whole file
+
+`:read !cmd` to insert command output  (or `:0read !cmd` to insert before first line)
+
+`:write !wc` to send to command. **DO NOT CONFUSE** with `:write! wc`, which writes to `wc` file without asking. Note the position of the `!` in both cases
+
+`:!cmd` executes a command (output goes to NoiceAll)
+
+`:terminal` to open a shell
+
+In `:s`, `\<` and `\>` stand for begin and end of word.
+And the `e` flag is for not giving an error if the pattern is not found (useful for macros, because macro execution stops when it finds an error)
+
+`:Man` to open man pages
+
+`:oldfiles` shows last opened files. `:e <#5` opens number 5. Also other commends like `:vsplit #<5`. But you can get a better result with `ºfr`
+
+`:browse` ???
+
