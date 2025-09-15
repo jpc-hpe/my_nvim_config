@@ -29,10 +29,38 @@ NeoVim running without GUI supports the "PopUp" menu on right mouse button click
 - `<leader>uI` to show treesitter tree
 - `<leader>w` for windows
 - `<leader>x` for diagnostics and similar
-- `g` goto (or show). Also changing case (gu/gU)
+- `g` goto (or show).
+- `gu`/`gU` changes case 
+- `gf` wint a URL (like  https://neovim.io/doc/user/usr_23.html#usr_23.txt ), downloads and edits
+- `ga` to show ascii code of char in cursor
+- `g8` to show byte sequence for UTF8
+- `g<ctrl-g>` shows position/total in bytes/words/...
+- `g?` is rot13
+- `gO` is outline
+- `gs` is sleep (like `:sleep`)
+- `NNNNgo` to move to byte NNNN
 - `]` and `[` to navigate diagnostics, errors, git changes, ...
 - C-r is redo (opposite of undo). I don't know why I keep forgetting it
   - But in insert mode C-r is to insert from a register.
+- C-v in insert mode to enter special chars literally
+  - C-V NNN to enter char with decimal code NNN
+  - C-V xHH to enter char with hex code HH
+  - C-V u xHHHH and C-V U xHHHHHHHH for unicodes
+- C-k char1 char2 for digraphs. Use `digraphs` to show which ones are available. Iis possible to define your own with `:digraph`
+- C-o cmd to execute normal mode command in insert mode. Equivalent to "ESC cmd i"
+- z is generally for folding, but ...
+  - `z=` to suggest spelling corrections
+  - `zg` to add to dictionary
+  - `zw` to mark as misspelled
+- NN| goes to column NN (| to column 1)
+- G is last line but NNG is line NN
+- ( and ) to navigate sentences. { and } for paragrpahs
+- `*` searches word under cursor
+- A and I also append/insert like a/i but at the end/beginning of the line
+- `=` works like '!' but using `equalprg`
+- K is keywordprg (if empty then LSP hover??)
+- C-w for window operations (see also leader-w)
+  
 
 All default keys are documented in `:help index`
 
@@ -308,6 +336,27 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
   - if `vim:` is not at the start, then you need a space before it
   - escape colons because otherwise the mark the end of the modeline
 
+- verbosity (for `nvim -V10` or `nvim -V20logfile`) is:
+```
+	1	Enables Lua tracing (see above). Does not produce messages.
+	2	When a file is ":source"'ed, or |shada| file is read or written.
+	3	UI info, terminal capabilities.
+	4	Shell commands.
+	5	Every searched tags file and include file.
+	8	Files for which a group of autocommands is executed.
+	9	Executed autocommands.
+	11	Finding items in a path.
+	12	Vimscript function calls.
+	13	When an exception is thrown, caught, finished, or discarded.
+	14	Anything pending in a ":finally" clause.
+	15	Ex commands from a script (truncated at 200 characters).
+	16	Ex commands.
+```
+
+- when you yank/delete/... a fold, it acts as a single line.
+
+- the old viminfo is now called `shada`. Details in shada option
+
 ## marks
 
 These are for use with with `'`. You can list them with `:marks`:
@@ -317,15 +366,20 @@ These are for use with with `'`. You can list them with `:marks`:
 - a-z local to the buffer
 - A-Z global
 - 0 is position when you exited last, 1 is when you exited before that, ... and so on until 9
-- `[`
-- `]`
+- `[` start of the previously operated or put text
+- `]` end of the previously operated or put text
 - `^`
 - `<` is visual mode selection start
 - `>` is visual mode selection end
 
+Also, `''` jumps to position before last jump
+
+
 ## registers
 
 You fill them with sequences like `"fyas` (yank a sentence, but it goes into register f). Same for deletions. You use them with sequences like `"fp` (paste, but from register f). You list them with `:registers`
+
+In insert mode, C-r register inserts the register
 
 - a-z user registers
 - A-Z append to the corresponding lowercase register
@@ -335,6 +389,24 @@ You fill them with sequences like `"fyas` (yank a sentence, but it goes into reg
 - `.`
 - `"`
 
+## textobjects
+
+`a` (around) is usually "bigger" than `i` (inside) because it also includes delimiters
+
+- w word (letters+numbers+underscore)
+- W WORD (any non-blank)
+- s sentence (dots)
+- p paragraph (blank lines)
+- b block (parens)
+- B BLOCK (brackets)
+- `>` (`<>`)
+- t (tag block: xml)
+- `'` single quoted string
+- `"` double quoted string
+- "`" for backquote
+
+
+
 ## macros
 
 They also use the a-z registers. Record with `q{register}`. Stop recording with `q`. Use with `@{register}` (or `3@x` to repeat 3 times). Re-execute last one with `@@`. Using uppercase letters for recording appends (to the corresponfing lowercase register) instead of replacing
@@ -342,10 +414,15 @@ They also use the a-z registers. Record with `q{register}`. Stop recording with 
 
 ## ranges
 
+- `.` is current line
+- `$` is last line
 - % is equivalent to `1,$`. You can do `:%!`; no need for ":1"+"G"
 - both sides can have offsets
 - and you can also use searches
 - So `:?^Foo?+2,/Bar$/-1s=grey=gray=g` replaces grey by gray in all lines between the second after the previous appearance of Foo at the start and the first before the next appearance of Bar at the end
+- when using a `;` to separate, cursor first goes to the first place, so:
+  - `/foo/,/bar/` is from first foo (starting here) to first bar (also starting here)
+  - `/foo/;/bar/` is from first foo (starting here) to first bar (starting at that foo) 
 - marks are also allowed: `:'a,'b!sort`
 - `:` when in visual mode opens with `'<,'>`
 
@@ -366,11 +443,46 @@ Short lines that finish before the block "left border" are not affected
 - `rX` replaces by char X
 - `>` and `<` to indent/dedent
 
+## patterns
+
+- almost standard regex, but with things escaped.
+- `\c` or `\C` at the beginning of search pattern to ignore/use case ignoring the ignorecase and smartcase settings
+- `/pattern/2` to land 2 lines after the search
+- `/pattern/e` to land at the end instead of athe beginning
+- `/pattern/e+3` to land 3 chars after the end. Also negative values
+- `/pattern/b-5` to land 5 chars before the start. Also positive values values
+- `*` for 0 or more
+- `\+` for 1 or more
+- `\(` and `\)` for groups.
+- `\%(\)` for non-capturing groups
+- `\=` for optional
+- `\{n,m}` for n<=x<=m repetitions. `\{,n}` for 0<=x<=n. `\{n,}` for n<=x. `{n}` for exactly n matches
+- `{-n,m}` is the same but not greedy. `{-}` is like `*` but not greedy
+- `\|` for alternatives
+- `\&` for alternatives matching in the same place. (wow!)
+- `\[]` for char sets or ranges
+- `\e` is escape, `\t` is tab, `\r` is carriage return, `\b` is backspace, `\n` is newline
+- `\%d` is decimal, `\%o` is octal, `\%x` is hex, `\%u` and `\%U` is unicode
+- `\a` is letters, `\d` is digits, `\x` is hexdigit, `\s` is whitespace, `\w`is word (letter, number, underscore), `\l` is lowercase, `\u` is uppercase
+- `\A`, `\D`, `\X`, `\S`, ... are the negations
+- `\_x` is like `x` but also matches newlines. So `\_.` matches absolutely everything
+- `	[=a=]` matches all chars that are equivalent to `a` in the current locale. So accented letters too
+- `~` is the last given substitute string
+- `\1`, `\2`, ... for groups in the search pattern. Used in replacement too
+- `\<` and `\>` stand for begin and end of word.
+
+The `e` flag in a search is for not giving an error if the pattern is not found (useful for macros, because macro execution stops when it finds an error)
+
+
+
+
 ## about help
 
 `:help xxx | only` (or `:only` in the help split) to see help in full windows. Initially the help doesn't appear in the bufline, but with `<leader>bb` executed twice it starts appearing. BTW: this applies to other windows too, like `:options`
 
 But an even better way is to prepend with `tab` and then it opens in a new tab: `:tab options`
+
+another trivk to force appeearing help and similar in tha bufline is `:set buflisted`
 
 `:helpgrep` shows first match, but stores all matches in the quickfix list (so you can explore e.g with `ºxQ`)
 
@@ -380,6 +492,8 @@ Important help pages:
 - index (for all the default key mappings)
 
 ## commands
+
+User defined commands should start with uppercase letter 
 
 Restore an option to default value with an ampersand: `:set iskeyword&`
 
@@ -401,12 +515,75 @@ Save or quit all windows at once with `:qall` or `:wall` (or `:wqall` to combine
 
 `:terminal` to open a shell
 
-In `:s`, `\<` and `\>` stand for begin and end of word.
-And the `e` flag is for not giving an error if the pattern is not found (useful for macros, because macro execution stops when it finds an error)
-
 `:Man` to open man pages
 
 `:oldfiles` shows last opened files. `:e <#5` opens number 5. Also other commends like `:vsplit #<5`. But you can get a better result with `ºfr`
 
 `:browse` ???
 
+`:cd` for global cwd, `:lcd` for buffer cwd, `:tcd` for tab cwd, º`:pwd` to show it
+
+`:buffers` or `:ls` lists buffers (not really needed if you have the buf/tab line)
+
+`:iab` to create abbreviations, `:iunab` to remove. Also similar with `:cabb`, and noremap versions too. `:abclear` to remove them all. Do we really need this having snippets? (TBC)
+
+`:{range}center [width]` to center a line. `:{range}right [width]` to right align. `:{range}left [margin]` to left align
+
+`:argdo` to execute a command in all files (args of nvim). `:windo` for all windows, `:bufdo` for all buffers
+
+`:retab` combined with `set expandtabs` to convert all tabs to spaces
+
+`:undolist`, `:earlier`, `:later` and complex u / C-R ???
+
+`:map` and all the variants (or equivalent lua)
+
+`:help letter<C-D>` shows all maps??
+
+`:jumps` shows the jump list
+
+redirect:
+
+ - `:redir > file` to send to a file. `:redir! > file` to overwrite existing. `:redir >> file` to append
+ - `:redir @{register}`
+ - `:redir => {variable}` (`=>>` to append) for variables
+ - `:redir END`
+
+`:filter {pattern} {command}` to restrict output. `:filter!` to negate
+
+`:silent {command}` to suppress output. `:silent!` to also suppress errors. redirect still gets the output
+
+`:[count]verbose {command}` to execute with verbosity (the one between 0 and 16)
+
+`:browse {command}` browses for file and uses for the command (e.g `:bro e`)
+
+`:e[dit]` without arguments reopens current file. For a new empty buffer use `:enew`
+
+
+TODO: full syntax for `:command`
+
+TODO: autocmd
+
+TODO: tags related
+
+TODO: https://neovim.io/doc/user/quickref.html#Q_qf
+
+
+## options
+
+textwidth for automatic line split. Set to 0 to disable. `gq` reformats
+
+virtualedit can be useful to edit tables with holes in them
+
+shada has comma separated options: `shada=!,'100,<50,s10,h`
+
+- `!` is global variables that start with uppercase and do not have lowercase
+- `<N` is max lines saved per register. synonim with `"`
+- '%' is buffer list
+- `'N` is how many files will have their marks remembered
+- `/N` is how many search patters to remember (the value of history if not specified)
+- `:N` is how many command history to remember (the value of history if not specified)
+- `@N` is how many input line to remember (the value of history if not specified)
+- `h` is no hlsearch
+- `sN` max item size
+
+### see quickref
