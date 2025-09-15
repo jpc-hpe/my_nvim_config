@@ -30,8 +30,8 @@ NeoVim running without GUI supports the "PopUp" menu on right mouse button click
 - `<leader>w` for windows
 - `<leader>x` for diagnostics and similar
 - `g` goto (or show).
-- `gu`/`gU` changes case 
-- `gf` wint a URL (like  https://neovim.io/doc/user/usr_23.html#usr_23.txt ), downloads and edits
+- `gu`/`gU` changes case
+- `gf` within a URL (like <https://neovim.io/doc/user/usr_23.html#usr_23.txt> ), downloads and edits
 - `ga` to show ascii code of char in cursor
 - `g8` to show byte sequence for UTF8
 - `g<ctrl-g>` shows position/total in bytes/words/...
@@ -40,27 +40,26 @@ NeoVim running without GUI supports the "PopUp" menu on right mouse button click
 - `gs` is sleep (like `:sleep`)
 - `NNNNgo` to move to byte NNNN
 - `]` and `[` to navigate diagnostics, errors, git changes, ...
-- C-r is redo (opposite of undo). I don't know why I keep forgetting it
-  - But in insert mode C-r is to insert from a register.
-- C-v in insert mode to enter special chars literally
-  - C-V NNN to enter char with decimal code NNN
-  - C-V xHH to enter char with hex code HH
-  - C-V u xHHHH and C-V U xHHHHHHHH for unicodes
-- C-k char1 char2 for digraphs. Use `digraphs` to show which ones are available. Iis possible to define your own with `:digraph`
-- C-o cmd to execute normal mode command in insert mode. Equivalent to "ESC cmd i"
-- z is generally for folding, but ...
+- `C-r` is redo (opposite of undo). I don't know why I keep forgetting it
+  - But in insert mode `C-r` is to insert from a register.
+- `C-v` in insert mode to enter special chars literally
+  - `C-V NNN` to enter char with decimal code NNN
+  - `C-V xHH` to enter char with hex code HH
+  - `C-V u xHHHH` and `C-V U xHHHHHHHH` for unicodes
+- `C-k char1 char2` for digraphs. Use `digraphs` to show which ones are available. It is possible to define your own with `:digraph`
+- `C-o cmd` to execute normal mode command in insert mode. Equivalent to `ESC cmd i`
+- `z` is generally for folding, but ...
   - `z=` to suggest spelling corrections
   - `zg` to add to dictionary
   - `zw` to mark as misspelled
-- NN| goes to column NN (| to column 1)
-- G is last line but NNG is line NN
-- ( and ) to navigate sentences. { and } for paragrpahs
+- `NN|` goes to column NN (`|` to column 1)
+- `G` is last line but `NNG` is line NN
+- `(` and `)` to navigate sentences. `{` and `}` for paragraphs
 - `*` searches word under cursor
-- A and I also append/insert like a/i but at the end/beginning of the line
-- `=` works like '!' but using `equalprg`
-- K is keywordprg (if empty then LSP hover??)
-- C-w for window operations (see also leader-w)
-  
+- `A` and `I` also append/insert like `a`/`i` but at the end/beginning of the line
+- `=` works like `!` but using `equalprg`
+- `K` is keywordprg (if empty then LSP hover??)
+- `C-w` for window operations (see also `<leader>-w)` 
 
 All default keys are documented in `:help index`
 
@@ -86,13 +85,13 @@ It supplies many of the leader-c and leader-x functions. Also the :Trouble comma
     - lsp incoming_calls
     - lsp outgoing_calls
     - lsp_references
-    - lst_type_definitions
+    - lsp_type_definitions
   - symbols==lsp_document_symbols
   - lsp_command ???. Needs params and wraps the LSP "workspace/executeCommand"
-  - ºxL loclist
-  - ºxQ qflist==quickfix
-  - ºxt and ºxT and ººtt todo (not native, uses folke/todo)
-  - ºxx and ºxX diagnostics
+  - <Leader>xL loclist
+  - <Leader>xQ qflist==quickfix
+  - <Leader>xt and <Leader>xT and <Leader><Leader>tt todo (not native, uses folke/todo)
+  - <Leader>xx and <Leader>xX diagnostics
   - profiler uses snacks profiler ???
   - [ ] add shortcut: symbol (LSP document symbols) to the right
 - command is show (default), toggle, close
@@ -108,8 +107,7 @@ It supplies many of the leader-c and leader-x functions. Also the :Trouble comma
   - win.position=right to decide where to put
   - `pinned` option to pin the buffer as the source for the opened trouble window ??
 - In the window:
-  - `?` shows help.
-    -`gb` for local buffer filter
+  - `?` shows help. -`gb` for local buffer filter
   - jump (double click or enter) moves again to main window at the exact point of the error
   - dd for delete complains modifiable is false, unless you set preview.scratch=false
   - z... for folding
@@ -157,7 +155,7 @@ copilot: completion with GitHub Copilot
 
 crates: for crates.io dependencies (rust)
 
-dial: increase/decrease numbers/dates/... in visual mode with C-X and C-A. Maybe I remove it later
+dial: increase/decrease numbers/dates/... in visual mode with `C-X` and `C-A.` Maybe I remove it later
 
 flash: search with `s` , then type the letter of the red label to jump into it
 
@@ -169,14 +167,14 @@ gitsigns: Related to git editing. It offers several features:
 
 - Marks editing in the gutter (and lualine).
 - `[` or `]` with h or H to navigate "hunks".
-- leader+gh for operations like staging.
-- :Gitsigns command for things like blame
+- `leader+gh` for operations like staging.
+- `:Gitsigns` command for things like blame
 
-grug-far: find and replace (leader-sr)
+grug-far: find and replace (`<leader>-sr`)
 
-inc-rename: LSP rename with feedback (:IncRename or leader-cr)
+inc-rename: LSP rename with feedback (`:IncRename` or `<leader>-cr`) 
 
-kulala: REST operations (leader-R). This is only present in http or rest filetypes, or in codeblocks.
+kulala: REST operations (`leader-R`). This is only present in http or rest filetypes, or in codeblocks.
 
 lazydev configures LuaLS. I still haven't understood what it does
 
@@ -337,21 +335,19 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
   - escape colons because otherwise the mark the end of the modeline
 
 - verbosity (for `nvim -V10` or `nvim -V20logfile`) is:
-```
-	1	Enables Lua tracing (see above). Does not produce messages.
-	2	When a file is ":source"'ed, or |shada| file is read or written.
-	3	UI info, terminal capabilities.
-	4	Shell commands.
-	5	Every searched tags file and include file.
-	8	Files for which a group of autocommands is executed.
-	9	Executed autocommands.
-	11	Finding items in a path.
-	12	Vimscript function calls.
-	13	When an exception is thrown, caught, finished, or discarded.
-	14	Anything pending in a ":finally" clause.
-	15	Ex commands from a script (truncated at 200 characters).
-	16	Ex commands.
-```
+  - 1 Enables Lua tracing (see above). Does not produce messages.
+  - 2 When a file is ":source"'ed, or |shada| file is read or written.
+  - 3 UI info, terminal capabilities.
+  - 4 Shell commands.
+  - 5 Every searched tags file and include file.
+  - 8 Files for which a group of autocommands is executed.
+  - 9 Executed autocommands.
+  - 11 Finding items in a path.
+  - 12 Vimscript function calls.
+  - 13 When an exception is thrown, caught, finished, or discarded.
+  - 14 Anything pending in a ":finally" clause.
+  - 15 Ex commands from a script (truncated at 200 characters).
+  - 16 Ex commands.
 
 - when you yank/delete/... a fold, it acts as a single line.
 
@@ -359,7 +355,7 @@ yanky: advanced yank: leader-p <p <P =p =P >p >P TODO: complete
 
 ## marks
 
-These are for use with with `'`. You can list them with `:marks`:
+These are for use with `'`. You can list them with `:marks`:
 
 - `"` is last position in the buffer
 - `.` is last edit on the buffer
@@ -373,7 +369,6 @@ These are for use with with `'`. You can list them with `:marks`:
 - `>` is visual mode selection end
 
 Also, `''` jumps to position before last jump
-
 
 ## registers
 
@@ -405,12 +400,9 @@ In insert mode, C-r register inserts the register
 - `"` double quoted string
 - "`" for backquote
 
-
-
 ## macros
 
-They also use the a-z registers. Record with `q{register}`. Stop recording with `q`. Use with `@{register}` (or `3@x` to repeat 3 times). Re-execute last one with `@@`. Using uppercase letters for recording appends (to the corresponfing lowercase register) instead of replacing
-
+They also use the a-z registers. Record with `q{register}`. Stop recording with `q`. Use with `@{register}` (or `3@x` to repeat 3 times). Re-execute last one with `@@`. Using uppercase letters for recording appends (to the corresponding lowercase register) instead of replacing
 
 ## ranges
 
@@ -422,7 +414,7 @@ They also use the a-z registers. Record with `q{register}`. Stop recording with 
 - So `:?^Foo?+2,/Bar$/-1s=grey=gray=g` replaces grey by gray in all lines between the second after the previous appearance of Foo at the start and the first before the next appearance of Bar at the end
 - when using a `;` to separate, cursor first goes to the first place, so:
   - `/foo/,/bar/` is from first foo (starting here) to first bar (also starting here)
-  - `/foo/;/bar/` is from first foo (starting here) to first bar (starting at that foo) 
+  - `/foo/;/bar/` is from first foo (starting here) to first bar (starting at that foo)
 - marks are also allowed: `:'a,'b!sort`
 - `:` when in visual mode opens with `'<,'>`
 
@@ -448,7 +440,7 @@ Short lines that finish before the block "left border" are not affected
 - almost standard regex, but with things escaped.
 - `\c` or `\C` at the beginning of search pattern to ignore/use case ignoring the ignorecase and smartcase settings
 - `/pattern/2` to land 2 lines after the search
-- `/pattern/e` to land at the end instead of athe beginning
+- `/pattern/e` to land at the end instead of at the beginning
 - `/pattern/e+3` to land 3 chars after the end. Also negative values
 - `/pattern/b-5` to land 5 chars before the start. Also positive values values
 - `*` for 0 or more
@@ -466,15 +458,12 @@ Short lines that finish before the block "left border" are not affected
 - `\a` is letters, `\d` is digits, `\x` is hexdigit, `\s` is whitespace, `\w`is word (letter, number, underscore), `\l` is lowercase, `\u` is uppercase
 - `\A`, `\D`, `\X`, `\S`, ... are the negations
 - `\_x` is like `x` but also matches newlines. So `\_.` matches absolutely everything
-- `	[=a=]` matches all chars that are equivalent to `a` in the current locale. So accented letters too
+- `[=a=]` matches all chars that are equivalent to `a` in the current locale. So accented letters too
 - `~` is the last given substitute string
 - `\1`, `\2`, ... for groups in the search pattern. Used in replacement too
 - `\<` and `\>` stand for begin and end of word.
 
 The `e` flag in a search is for not giving an error if the pattern is not found (useful for macros, because macro execution stops when it finds an error)
-
-
-
 
 ## about help
 
@@ -482,9 +471,9 @@ The `e` flag in a search is for not giving an error if the pattern is not found 
 
 But an even better way is to prepend with `tab` and then it opens in a new tab: `:tab options`
 
-another trivk to force appeearing help and similar in tha bufline is `:set buflisted`
+Another trick to force help and similar to appear in the bufline is `:set buflisted`
 
-`:helpgrep` shows first match, but stores all matches in the quickfix list (so you can explore e.g with `ºxQ`)
+`:helpgrep` shows first match, but stores all matches in the quickfix list (so you can explore e.g with `<Leader>xQ`)
 
 Important help pages:
 
@@ -493,7 +482,7 @@ Important help pages:
 
 ## commands
 
-User defined commands should start with uppercase letter 
+User defined commands should start with uppercase letter
 
 Restore an option to default value with an ampersand: `:set iskeyword&`
 
@@ -505,9 +494,9 @@ Save to another file and start working on it with `:saveas anotherfile`. With `:
 
 Save or quit all windows at once with `:qall` or `:wall` (or `:wqall` to combine)
 
-`:[range]global/{pattern}/{command}` (where `global`is usally abbreviated to `g`) is like `:s/...`. But instead of replacing executes on the matchin lines the given command, which is something that you would write after a `:`. You can use `:normal` for normal mode commands. IN this case, teh default range is already the whole file
+`:[range]global/{pattern}/{command}` (where `global` is usually abbreviated to `g`) is like `:s/...`. But instead of replacing executes on the matching lines the given command, which is something that you would write after a `:`. You can use `:normal` for normal mode commands. IN this case, the default range is already the whole file
 
-`:read !cmd` to insert command output  (or `:0read !cmd` to insert before first line)
+`:read !cmd` to insert command output (or `:0read !cmd` to insert before first line)
 
 `:write !wc` to send to command. **DO NOT CONFUSE** with `:write! wc`, which writes to `wc` file without asking. Note the position of the `!` in both cases
 
@@ -517,11 +506,11 @@ Save or quit all windows at once with `:qall` or `:wall` (or `:wqall` to combine
 
 `:Man` to open man pages
 
-`:oldfiles` shows last opened files. `:e <#5` opens number 5. Also other commends like `:vsplit #<5`. But you can get a better result with `ºfr`
+`:oldfiles` shows last opened files. `:e <#5` opens number 5. Also other commends like `:vsplit #<5`. But you can get a better result with `<Leader>fr`
 
 `:browse` ???
 
-`:cd` for global cwd, `:lcd` for buffer cwd, `:tcd` for tab cwd, º`:pwd` to show it
+`:cd` for global cwd, `:lcd` for buffer cwd, `:tcd` for tab cwd, <Leader>`:pwd` to show it
 
 `:buffers` or `:ls` lists buffers (not really needed if you have the buf/tab line)
 
@@ -543,10 +532,10 @@ Save or quit all windows at once with `:qall` or `:wall` (or `:wqall` to combine
 
 redirect:
 
- - `:redir > file` to send to a file. `:redir! > file` to overwrite existing. `:redir >> file` to append
- - `:redir @{register}`
- - `:redir => {variable}` (`=>>` to append) for variables
- - `:redir END`
+- `:redir > file` to send to a file. `:redir! > file` to overwrite existing. `:redir >> file` to append
+- `:redir @{register}`
+- `:redir => {variable}` (`=>>` to append) for variables
+- `:redir END`
 
 `:filter {pattern} {command}` to restrict output. `:filter!` to negate
 
@@ -558,15 +547,13 @@ redirect:
 
 `:e[dit]` without arguments reopens current file. For a new empty buffer use `:enew`
 
-
 TODO: full syntax for `:command`
 
 TODO: autocmd
 
 TODO: tags related
 
-TODO: https://neovim.io/doc/user/quickref.html#Q_qf
-
+TODO: <https://neovim.io/doc/user/quickref.html#Q_qf>
 
 ## options
 
@@ -577,7 +564,7 @@ virtualedit can be useful to edit tables with holes in them
 shada has comma separated options: `shada=!,'100,<50,s10,h`
 
 - `!` is global variables that start with uppercase and do not have lowercase
-- `<N` is max lines saved per register. synonim with `"`
+- `<N` is max lines saved per register. synonym with `"`
 - '%' is buffer list
 - `'N` is how many files will have their marks remembered
 - `/N` is how many search patters to remember (the value of history if not specified)
