@@ -3,8 +3,8 @@
 -- Add any additional options here
 
 -- JPC This leader keys are nice for a spanish keyboard layout
-vim.g.mapleader = "º"
-vim.g.maplocalleader = "ª"
+vim.g.mapleader = "ñ" -- "º"
+vim.g.maplocalleader = "Ñ" --"ª"
 -- JPC I have a dedicated virtualenv for the python provider
 -- It has of course pynvim installed
 vim.g.python_host_prog = "~/myenvs/py/nvim/bin/python"
