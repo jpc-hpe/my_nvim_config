@@ -3,8 +3,8 @@
 -- Add any additional options here
 
 -- JPC This leader keys are nice for a spanish keyboard layout
-vim.g.mapleader = "ñ" -- "º"
-vim.g.maplocalleader = "Ñ" --"ª"
+vim.g.mapleader = "º" -- "ñ"
+vim.g.maplocalleader = "ª" -- "Ñ"
 -- JPC I have a dedicated virtualenv for the python provider
 -- It has of course pynvim installed
 vim.g.python_host_prog = "~/myenvs/py/nvim/bin/python"
@@ -55,6 +55,9 @@ end, {
     return servers
   end,
 })
+
+-- JPC: after recent upgrades, I cannot longer disable automatic start via nvim-lspconfig
+-- Not working vim.lsp.enable("harper_ls", false)
 
 vim.o.mousemodel = "popup"
 --
