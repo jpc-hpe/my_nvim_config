@@ -79,7 +79,7 @@ return make_plugin_specs({
 	-- "ii14/neorepl.nvim",
 	"jay-babu/mason-nvim-dap.nvim",
 	"jbyuki/one-small-step-for-vimkind",
-	"jpc-hpe/chitshit.nvim",
+	"jpc4242/chitshit.nvim",
 	-- "kmarius/jsregexp",
 	-- "kristijanhusak/vim-dadbod-completion",
 	"kristijanhusak/vim-dadbod-ui",
