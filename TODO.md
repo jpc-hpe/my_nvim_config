@@ -1,5 +1,7 @@
 # Things to explore some day
 
+- [ ] document that bad behaviour with altgr keys was becasue of windows terminal kitty keyboard protocol
+
 - [ ] refine ghost colors
 - [ ] codecompanion
 - [ ] investigate LazyVim/lua/lazyvim/plugins/extras/lsp/none-ls.lua and none-ls to add my own
